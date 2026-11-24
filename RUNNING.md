@@ -1,5 +1,7 @@
 # Running the benchmark
 
+What each task measures, and the rules for comparable results: [METHOD.md](METHOD.md).
+
 Requirements:
 
 - Windows 10/11 (x64 or ARM64)

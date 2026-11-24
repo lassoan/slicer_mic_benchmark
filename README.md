@@ -1,4 +1,4 @@
-# Medical image computing benchmark: Python on Windows (x64 and ARM64)
+# Medical image computing benchmark
 
 Times typical medical image computing workloads in Python (DICOM and file I/O, numpy/scipy, ITK and VTK
 algorithms, VTK rendering, AI segmentation with PyTorch and ONNX Runtime, and the NPU where there is one) and
@@ -11,7 +11,7 @@ writes a report. On an ARM64 computer it compares up to three builds of CPython 
 | `arm64` | python.org ARM64 | `win_arm64` wheels (some built locally) | nothing | ARM64 |
 
 On an Intel/AMD computer only `x64` runs, so the report has absolute times (for comparing computers) instead of
-speed-ups. See [PLAN.md](PLAN.md) for the design and task parameters.
+speed-ups. See [METHOD.md](METHOD.md) for the design and task parameters.
 
 ## Quick start
 

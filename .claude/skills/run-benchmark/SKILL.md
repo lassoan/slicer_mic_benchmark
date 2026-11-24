@@ -6,7 +6,7 @@ description: Run the medical image computing benchmark on this computer, check t
 # Run the benchmark and add findings
 
 You are running a timing benchmark. Your own activity can distort the timings, so keep the computer quiet while
-it runs. [RUNNING.md](../../../RUNNING.md) is the full manual. Read it if something here is unclear.
+it runs. [RUNNING.md](../../../RUNNING.md) is the full manual, and [METHOD.md](../../../METHOD.md) describes what each task measures. Read them if something here is unclear.
 
 ## 1. Check prerequisites
 

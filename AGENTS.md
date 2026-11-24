@@ -2,7 +2,7 @@
 
 - **Running the benchmark** and adding a run's findings: follow
   [.claude/skills/run-benchmark/SKILL.md](.claude/skills/run-benchmark/SKILL.md).
-- **Manual for humans:** [RUNNING.md](RUNNING.md).
+- **Manual for humans:** [RUNNING.md](RUNNING.md). What is measured and how: [METHOD.md](METHOD.md).
 
 Rules that always apply:
 

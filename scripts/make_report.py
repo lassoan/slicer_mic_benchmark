@@ -453,7 +453,7 @@ def main():
            "- Each task time is the median of the timed repeats after a warm-up (AI: one run per case). Before each "
            "run the driver waits until other processes leave the CPU idle; their CPU load is logged and runs that "
            "overlapped it are repeated once.",
-           "- Design, task parameters and package build notes: `PLAN.md` and `README.md` in the benchmark repository.",
+           "- Design, task parameters and package differences: `METHOD.md` in the benchmark repository.",
            ""]
 
     md_text = "\n".join(md)
