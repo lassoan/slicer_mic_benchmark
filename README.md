@@ -1,8 +1,8 @@
 # Medical image computing benchmark
 
-Times typical medical image computing workloads in Python (DICOM and file I/O, numpy/scipy, ITK and VTK
-algorithms, VTK rendering, AI segmentation with PyTorch and ONNX Runtime, and the NPU where there is one) and
-writes a report. On an ARM64 computer it compares up to three builds of CPython 3.12.10:
+This repository contains scripts that measure execution time of medical image computing workloads that are typical in applications such as 3D Slicer: DICOM and file I/O, numpy/scipy, ITK and VTK algorithms, VTK rendering, AI image segmentation. The goal is to identify performance bottlenecks of various architectures and find software solutions to address them.
+
+On an ARM64 computer it compares up to three builds of CPython 3.12.10:
 
 | Environment | Interpreter | Packages | Emulated on ARM64 | Available on |
 | --- | --- | --- | --- | --- |
