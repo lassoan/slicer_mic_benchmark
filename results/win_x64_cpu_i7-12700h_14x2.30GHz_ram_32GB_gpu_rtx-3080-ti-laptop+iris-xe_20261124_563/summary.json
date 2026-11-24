@@ -1,0 +1,1145 @@
+{
+ "envs": [
+  "x64"
+ ],
+ "groups": [
+  {
+   "section": "startup",
+   "threads": 0,
+   "rows": [
+    {
+     "task": "python_startup",
+     "times": {
+      "x64": 0.03311070008203387
+     },
+     "speedup": {}
+    },
+    {
+     "task": "import_numpy_scipy",
+     "times": {
+      "x64": 0.4511969997547567
+     },
+     "speedup": {}
+    },
+    {
+     "task": "import_simpleitk",
+     "times": {
+      "x64": 0.19365100003778934
+     },
+     "speedup": {}
+    },
+    {
+     "task": "import_vtk_all",
+     "times": {
+      "x64": 0.6545017999596894
+     },
+     "speedup": {}
+    },
+    {
+     "task": "import_torch",
+     "times": {
+      "x64": 1.6614350001327693
+     },
+     "speedup": {}
+    },
+    {
+     "task": "import_bench_stack",
+     "times": {
+      "x64": 1.3222533999942243
+     },
+     "speedup": {}
+    }
+   ],
+   "geomean": {}
+  },
+  {
+   "section": "io",
+   "threads": 20,
+   "rows": [
+    {
+     "task": "1a_read_dicom_headers_sitk",
+     "times": {
+      "x64": 7.738452100194991
+     },
+     "speedup": {}
+    },
+    {
+     "task": "1a_read_dicom_headers_pydicom",
+     "times": {
+      "x64": 2.202601899858564
+     },
+     "speedup": {}
+    },
+    {
+     "task": "1b_check_geometry_pure_python_x50",
+     "times": {
+      "x64": 0.4477654998190701
+     },
+     "speedup": {}
+    },
+    {
+     "task": "1c_read_dicom_volumes_sitk",
+     "times": {
+      "x64": 9.034960400313139
+     },
+     "speedup": {}
+    },
+    {
+     "task": "1d_write_nrrd_raw",
+     "times": {
+      "x64": 2.641329100355506
+     },
+     "speedup": {}
+    },
+    {
+     "task": "1d_write_nrrd_gzip",
+     "times": {
+      "x64": 36.00638569984585
+     },
+     "speedup": {}
+    },
+    {
+     "task": "1e_write_nifti",
+     "times": {
+      "x64": 1.9534471998922527
+     },
+     "speedup": {}
+    },
+    {
+     "task": "1e_write_nifti_gz",
+     "times": {
+      "x64": 31.506075900048018
+     },
+     "speedup": {}
+    },
+    {
+     "task": "1f_read_nrrd_raw",
+     "times": {
+      "x64": 1.4680697000585496
+     },
+     "speedup": {}
+    },
+    {
+     "task": "1f_read_nrrd_gzip",
+     "times": {
+      "x64": 12.90718529978767
+     },
+     "speedup": {}
+    },
+    {
+     "task": "1f_read_nifti_raw_dataobj",
+     "times": {
+      "x64": 1.1965959998778999
+     },
+     "speedup": {}
+    },
+    {
+     "task": "1f_read_nifti_gz_dataobj",
+     "times": {
+      "x64": 10.897975800093263
+     },
+     "speedup": {}
+    },
+    {
+     "task": "1f_read_nifti_gz_fdata_float32",
+     "times": {
+      "x64": 12.002511899918318
+     },
+     "speedup": {}
+    }
+   ],
+   "geomean": {}
+  },
+  {
+   "section": "numpy",
+   "threads": 1,
+   "rows": [
+    {
+     "task": "2a_window_level_uint8",
+     "times": {
+      "x64": 1.4643819001503289
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2a_zscore_clip_float32",
+     "times": {
+      "x64": 2.000667499843985
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2a_elementwise_synthetic_512cubed",
+     "times": {
+      "x64": 1.3591660996899009
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2b_histogram",
+     "times": {
+      "x64": 2.9679061002098024
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2b_percentiles",
+     "times": {
+      "x64": 1.2396530001424253
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2b_unique",
+     "times": {
+      "x64": 1.3022217000834644
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2c_gaussian_filter",
+     "times": {
+      "x64": 10.403204799629748
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2c_median_filter_crop",
+     "times": {
+      "x64": 21.451270800083876
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2c_binary_dilate_erode",
+     "times": {
+      "x64": 3.603147099725902
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2d_label_largest_component_edt",
+     "times": {
+      "x64": 13.974806900136173
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2e_zoom_isotropic_1.5mm",
+     "times": {
+      "x64": 1.8522970001213253
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2e_affine_rotation",
+     "times": {
+      "x64": 13.681051099672914
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2f_pca_bone_points_svd",
+     "times": {
+      "x64": 0.8607369000092149
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2f_svd_2000",
+     "times": {
+      "x64": 2.343348900321871
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2f_matmul_2000",
+     "times": {
+      "x64": 0.14003110025078058
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2f_landmark_fit_lstsq_kabsch",
+     "times": {
+      "x64": 0.010207700077444315
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2f_eigh_batch_3x3",
+     "times": {
+      "x64": 0.753798299934715
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2g_fft_phase_correlation",
+     "times": {
+      "x64": 1.331875499803573
+     },
+     "speedup": {}
+    }
+   ],
+   "geomean": {}
+  },
+  {
+   "section": "numpy",
+   "threads": 20,
+   "rows": [
+    {
+     "task": "2a_window_level_uint8",
+     "times": {
+      "x64": 1.4487596997059882
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2a_zscore_clip_float32",
+     "times": {
+      "x64": 1.992745399940759
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2a_elementwise_synthetic_512cubed",
+     "times": {
+      "x64": 1.3782967999577522
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2b_histogram",
+     "times": {
+      "x64": 2.255261499900371
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2b_percentiles",
+     "times": {
+      "x64": 1.261701799929142
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2b_unique",
+     "times": {
+      "x64": 1.2867493997327983
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2c_gaussian_filter",
+     "times": {
+      "x64": 10.362395400181413
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2c_median_filter_crop",
+     "times": {
+      "x64": 21.4031909997575
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2c_binary_dilate_erode",
+     "times": {
+      "x64": 3.590403000358492
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2d_label_largest_component_edt",
+     "times": {
+      "x64": 14.160037899855524
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2e_zoom_isotropic_1.5mm",
+     "times": {
+      "x64": 1.8499512001872063
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2e_affine_rotation",
+     "times": {
+      "x64": 13.6741037000902
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2f_pca_bone_points_svd",
+     "times": {
+      "x64": 0.8421527999453247
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2f_svd_2000",
+     "times": {
+      "x64": 1.8706801999360323
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2f_matmul_2000",
+     "times": {
+      "x64": 0.03703140001744032
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2f_landmark_fit_lstsq_kabsch",
+     "times": {
+      "x64": 0.010202099569141865
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2f_eigh_batch_3x3",
+     "times": {
+      "x64": 0.7785208001732826
+     },
+     "speedup": {}
+    },
+    {
+     "task": "2g_fft_phase_correlation",
+     "times": {
+      "x64": 1.3784909001551569
+     },
+     "speedup": {}
+    }
+   ],
+   "geomean": {}
+  },
+  {
+   "section": "cpp",
+   "threads": 1,
+   "rows": [
+    {
+     "task": "3a_curvature_anisotropic_diffusion",
+     "times": {
+      "x64": 28.28402760019526
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3a_gradient_anisotropic_diffusion",
+     "times": {
+      "x64": 16.45423600031063
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3b_bone_labelmap_threshold_cc_relabel",
+     "times": {
+      "x64": 1.7179612000472844
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3c_label_intensity_statistics",
+     "times": {
+      "x64": 9.845660400111228
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3c_label_shape_statistics",
+     "times": {
+      "x64": 1.4798304000869393
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3d_histogram_vtkImageAccumulate",
+     "times": {
+      "x64": 0.9000133001245558
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3d_image_statistics_sitk",
+     "times": {
+      "x64": 1.079479199834168
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3e_flying_edges",
+     "times": {
+      "x64": 0.6767756999470294
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3e_windowed_sinc_smoothing",
+     "times": {
+      "x64": 4.839440100360662
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3e_polydata_normals",
+     "times": {
+      "x64": 2.9142228001728654
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3f_polydata_to_labelmap_stencil",
+     "times": {
+      "x64": 58.93975930009037
+     },
+     "speedup": {}
+    }
+   ],
+   "geomean": {}
+  },
+  {
+   "section": "cpp",
+   "threads": 20,
+   "rows": [
+    {
+     "task": "3a_curvature_anisotropic_diffusion",
+     "times": {
+      "x64": 6.185958300251514
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3a_gradient_anisotropic_diffusion",
+     "times": {
+      "x64": 5.06356510007754
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3b_bone_labelmap_threshold_cc_relabel",
+     "times": {
+      "x64": 1.0363318999297917
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3c_label_intensity_statistics",
+     "times": {
+      "x64": 1.6646888996474445
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3c_label_shape_statistics",
+     "times": {
+      "x64": 0.6685219998471439
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3d_histogram_vtkImageAccumulate",
+     "times": {
+      "x64": 0.8975707995705307
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3d_image_statistics_sitk",
+     "times": {
+      "x64": 0.11132699996232986
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3e_flying_edges",
+     "times": {
+      "x64": 0.11342100007459521
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3e_windowed_sinc_smoothing",
+     "times": {
+      "x64": 1.2601142995990813
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3e_polydata_normals",
+     "times": {
+      "x64": 2.3008220000192523
+     },
+     "speedup": {}
+    },
+    {
+     "task": "3f_polydata_to_labelmap_stencil",
+     "times": {
+      "x64": 10.005536700133234
+     },
+     "speedup": {}
+    }
+   ],
+   "geomean": {}
+  },
+  {
+   "section": "render",
+   "threads": 1,
+   "rows": [
+    {
+     "task": "4a_surface_full_first_frame_case01",
+     "times": {
+      "x64": 0.2355839000083506
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4a_surface_full_360_frames_case01",
+     "times": {
+      "x64": 0.39594570035114884
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4a_surface_decimated_first_frame_case01",
+     "times": {
+      "x64": 0.1804428999312222
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4a_surface_decimated_360_frames_case01",
+     "times": {
+      "x64": 0.36781520023941994
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4b_gpu_volume_first_frame_case01",
+     "times": {
+      "x64": 0.21489099971950054
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4b_gpu_volume_60_frames_case01",
+     "times": {
+      "x64": 0.6985867000184953
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4c_cpu_volume_36_frames_case01",
+     "times": {
+      "x64": 50.28497330006212
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4a_surface_full_first_frame_case18",
+     "times": {
+      "x64": 0.3151595997624099
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4a_surface_full_360_frames_case18",
+     "times": {
+      "x64": 0.644291799981147
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4a_surface_decimated_first_frame_case18",
+     "times": {
+      "x64": 0.20876280032098293
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4a_surface_decimated_360_frames_case18",
+     "times": {
+      "x64": 0.43392839981243014
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4b_gpu_volume_first_frame_case18",
+     "times": {
+      "x64": 0.6238925000652671
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4b_gpu_volume_60_frames_case18",
+     "times": {
+      "x64": 1.464093599934131
+     },
+     "speedup": {}
+    }
+   ],
+   "geomean": {}
+  },
+  {
+   "section": "render",
+   "threads": 20,
+   "rows": [
+    {
+     "task": "4a_surface_full_first_frame_case01",
+     "times": {
+      "x64": 0.21965920040383935
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4a_surface_full_360_frames_case01",
+     "times": {
+      "x64": 0.4010355998761952
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4a_surface_decimated_first_frame_case01",
+     "times": {
+      "x64": 0.17990269977599382
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4a_surface_decimated_360_frames_case01",
+     "times": {
+      "x64": 0.35327940015122294
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4b_gpu_volume_first_frame_case01",
+     "times": {
+      "x64": 0.20089789992198348
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4b_gpu_volume_60_frames_case01",
+     "times": {
+      "x64": 0.6920463000424206
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4c_cpu_volume_36_frames_case01",
+     "times": {
+      "x64": 8.987308999989182
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4a_surface_full_first_frame_case18",
+     "times": {
+      "x64": 0.2892525000497699
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4a_surface_full_360_frames_case18",
+     "times": {
+      "x64": 0.5974135999567807
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4a_surface_decimated_first_frame_case18",
+     "times": {
+      "x64": 0.18259140010923147
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4a_surface_decimated_360_frames_case18",
+     "times": {
+      "x64": 0.43297299975529313
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4b_gpu_volume_first_frame_case18",
+     "times": {
+      "x64": 0.6264614998362958
+     },
+     "speedup": {}
+    },
+    {
+     "task": "4b_gpu_volume_60_frames_case18",
+     "times": {
+      "x64": 1.488276300020516
+     },
+     "speedup": {}
+    }
+   ],
+   "geomean": {}
+  },
+  {
+   "section": "ai",
+   "threads": 20,
+   "rows": [
+    {
+     "task": "5a_totalseg_fast_case01",
+     "times": {
+      "x64": 36.86997330002487
+     },
+     "speedup": {}
+    },
+    {
+     "task": "5a_totalseg_fast_case02",
+     "times": {
+      "x64": 25.00639870017767
+     },
+     "speedup": {}
+    },
+    {
+     "task": "5a_totalseg_fast_case03",
+     "times": {
+      "x64": 25.557627100031823
+     },
+     "speedup": {}
+    },
+    {
+     "task": "5a_totalseg_fast_case11",
+     "times": {
+      "x64": 23.037150899879634
+     },
+     "speedup": {}
+    },
+    {
+     "task": "5a_totalseg_fast_case13",
+     "times": {
+      "x64": 17.719637699890882
+     },
+     "speedup": {}
+    },
+    {
+     "task": "5b_totalseg_full_case01",
+     "times": {
+      "x64": 340.91382499970496
+     },
+     "speedup": {}
+    },
+    {
+     "task": "5c_monai_abdominal-organs-3mm-v2.0.0_case01",
+     "times": {
+      "x64": 17.05329590011388
+     },
+     "speedup": {}
+    },
+    {
+     "task": "5c_monai_abdominal-organs-3mm-v2.0.0_case02",
+     "times": {
+      "x64": 24.108369399793446
+     },
+     "speedup": {}
+    },
+    {
+     "task": "5c_monai_abdominal-organs-3mm-v2.0.0_case03",
+     "times": {
+      "x64": 17.15790109988302
+     },
+     "speedup": {}
+    },
+    {
+     "task": "5c_monai_abdominal-organs-3mm-v2.0.0_case11",
+     "times": {
+      "x64": 15.648652599658817
+     },
+     "speedup": {}
+    },
+    {
+     "task": "5c_monai_abdominal-organs-3mm-v2.0.0_case13",
+     "times": {
+      "x64": 6.233696300070733
+     },
+     "speedup": {}
+    }
+   ],
+   "geomean": {}
+  },
+  {
+   "section": "onnx",
+   "threads": 20,
+   "rows": [
+    {
+     "task": "6a_patch_torch_t1",
+     "times": {
+      "x64": 10.293337699957192
+     },
+     "speedup": {}
+    },
+    {
+     "task": "6a_patch_onnxruntime_t1",
+     "times": {
+      "x64": 11.523056999780238
+     },
+     "speedup": {}
+    },
+    {
+     "task": "6a_patch_torch_t20",
+     "times": {
+      "x64": 2.924370300024748
+     },
+     "speedup": {}
+    },
+    {
+     "task": "6a_patch_onnxruntime_t20",
+     "times": {
+      "x64": 4.039684900082648
+     },
+     "speedup": {}
+    },
+    {
+     "task": "6b_sliding_window_torch_case01",
+     "times": {
+      "x64": 12.08621280035004
+     },
+     "speedup": {}
+    },
+    {
+     "task": "6b_sliding_window_onnxruntime_case01",
+     "times": {
+      "x64": 17.555230299942195
+     },
+     "speedup": {}
+    },
+    {
+     "task": "6b_sliding_window_torch_case02",
+     "times": {
+      "x64": 27.40319379977882
+     },
+     "speedup": {}
+    },
+    {
+     "task": "6b_sliding_window_onnxruntime_case02",
+     "times": {
+      "x64": 39.17206310015172
+     },
+     "speedup": {}
+    },
+    {
+     "task": "6b_sliding_window_torch_case03",
+     "times": {
+      "x64": 28.76712189987302
+     },
+     "speedup": {}
+    },
+    {
+     "task": "6b_sliding_window_onnxruntime_case03",
+     "times": {
+      "x64": 38.80598259996623
+     },
+     "speedup": {}
+    },
+    {
+     "task": "6b_sliding_window_torch_case11",
+     "times": {
+      "x64": 13.103995600249618
+     },
+     "speedup": {}
+    },
+    {
+     "task": "6b_sliding_window_onnxruntime_case11",
+     "times": {
+      "x64": 17.406385799869895
+     },
+     "speedup": {}
+    },
+    {
+     "task": "6b_sliding_window_torch_case13",
+     "times": {
+      "x64": 12.740781299769878
+     },
+     "speedup": {}
+    },
+    {
+     "task": "6b_sliding_window_onnxruntime_case13",
+     "times": {
+      "x64": 17.65714759984985
+     },
+     "speedup": {}
+    }
+   ],
+   "geomean": {}
+  }
+ ],
+ "image_diffs": {},
+ "seg_dice": {},
+ "load": {
+  "startup-t0": {
+   "x64": null
+  },
+  "io-t20": {
+   "x64": {
+    "mean": 6.8,
+    "max": 27.6
+   }
+  },
+  "numpy-t1": {
+   "x64": {
+    "mean": 2.2,
+    "max": 12.1
+   }
+  },
+  "numpy-t20": {
+   "x64": {
+    "mean": 1.4,
+    "max": 4.9
+   }
+  },
+  "cpp-t1": {
+   "x64": {
+    "mean": 1.4,
+    "max": 4.9
+   }
+  },
+  "cpp-t20": {
+   "x64": {
+    "mean": 1.8,
+    "max": 5.5
+   }
+  },
+  "render-t1": {
+   "x64": {
+    "mean": 1.7,
+    "max": 5.7
+   }
+  },
+  "render-t20": {
+   "x64": {
+    "mean": 2.5,
+    "max": 5.0
+   }
+  },
+  "ai-t20": {
+   "x64": {
+    "mean": 3.0,
+    "max": 7.9
+   }
+  },
+  "onnx-t20": {
+   "x64": {
+    "mean": 2.0,
+    "max": 8.1
+   }
+  }
+ },
+ "machine": {
+  "cpu": "12th Gen Intel(R) Core(TM) i7-12700H",
+  "logical_cpus": 20,
+  "memory_gb": 31.7,
+  "windows": "10.0.26200",
+  "machine": "AMD64",
+  "system": {
+   "system": {
+    "manufacturer": "GIGABYTE",
+    "model": "AORUS 17 YE5",
+    "family": "AORUS"
+   },
+   "os": {
+    "name": "Windows 11 Education",
+    "version": "25H2",
+    "build": "26200.9711",
+    "kernel": "10.0.26200"
+   },
+   "architecture": {
+    "machine": "x64",
+    "python_process": "x64",
+    "emulated": false
+   },
+   "cpu": {
+    "name": "12th Gen Intel(R) Core(TM) i7-12700H",
+    "vendor": "GenuineIntel",
+    "identifier": "Intel64 Family 6 Model 154 Stepping 3",
+    "sockets": 1,
+    "physical_cores": 14,
+    "logical_cpus": 20,
+    "max_mhz": 2300,
+    "l2_cache_kb": 11776,
+    "l3_cache_kb": 24576,
+    "smt": true,
+    "core_classes": [
+     {
+      "kind": "performance",
+      "cores": 6,
+      "threads": 12
+     },
+     {
+      "kind": "efficiency",
+      "cores": 8,
+      "threads": 8
+     }
+    ],
+    "features": [
+     "sse4_2",
+     "avx",
+     "avx2"
+    ]
+   },
+   "memory": {
+    "total_gb": 32.0,
+    "usable_gb": 31.7,
+    "type": "DDR5",
+    "speed_mts": 4800,
+    "modules": 2,
+    "manufacturer": "A-DATA Technology"
+   },
+   "gpus": [
+    {
+     "name": "Meta Virtual Monitor",
+     "vendor": "Meta Inc.",
+     "driver": "15.52.32.370",
+     "driver_date": "2026-04-22",
+     "virtual": true
+    },
+    {
+     "name": "NVIDIA GeForce RTX 3080 Ti Laptop GPU",
+     "vendor": "NVIDIA",
+     "driver": "32.0.16.1062",
+     "driver_date": "2026-06-10",
+     "dedicated_memory_gb": 16.0,
+     "nvidia_driver": "610.62",
+     "cuda_compute_capability": "8.6"
+    },
+    {
+     "name": "Intel(R) Iris(R) Xe Graphics",
+     "vendor": "Intel Corporation",
+     "driver": "31.0.101.1999",
+     "driver_date": "2022-05-30",
+     "dedicated_memory_gb": 1.0
+    }
+   ],
+   "npus": [],
+   "storage": [
+    {
+     "name": "GIGABYTE AG470S1TB-SI B10",
+     "media": "SSD",
+     "bus": "NVMe",
+     "size_gb": 954.0,
+     "system_disk": true
+    }
+   ],
+   "power": {
+    "source": "AC",
+    "battery_percent": 100,
+    "plan": "Balanced",
+    "mode": "Balanced"
+   },
+   "python": {
+    "version": "3.12.10",
+    "implementation": "CPython",
+    "compiler": "MSC v.1943 64 bit (AMD64)",
+    "platform": "win-amd64",
+    "executable": "<repo>/.envs/x64/Scripts/python.exe"
+   }
+  }
+ },
+ "signature_mismatches": []
+}
