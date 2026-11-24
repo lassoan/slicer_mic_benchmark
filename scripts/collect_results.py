@@ -27,7 +27,7 @@ def run_info(d):
     system = machine.get("system") or {}
     if system.get("cpu"):
         from bench.sysinfo import summary_line
-        desc = summary_line(system)
+        desc = summary_line(system).replace(" | ", ", ")  # "|" would split the Markdown table cell
     else:
         desc = f"{machine.get('cpu', '?')}, {machine.get('logical_cpus', '?')} logical CPUs, " \
                f"{machine.get('memory_gb', '?')} GB RAM, Windows {machine.get('windows', '?')}"

@@ -86,7 +86,7 @@ $r.mem = @(Get-CimInstance Win32_PhysicalMemory | Select-Object Capacity, Speed,
     SMBIOSMemoryType, Manufacturer, PartNumber)
 $r.gpu = @(Get-CimInstance Win32_VideoController | Select-Object Name, AdapterCompatibility, DriverVersion,
     @{n='DriverDate'; e={ if ($_.DriverDate) { $_.DriverDate.ToString('yyyy-MM-dd') } }}, AdapterRAM, PNPDeviceID)
-$r.npu = @(Get-CimInstance Win32_PnPEntity -Filter "PNPClass='ComputeAccelerator' OR Name LIKE '%NPU%' OR Name LIKE '%AI Boost%' OR Name LIKE '%Neural Processing%'" |
+$r.npu = @(Get-CimInstance Win32_PnPEntity -Filter "PNPClass='ComputeAccelerator' OR Name LIKE 'NPU%' OR Name LIKE '% NPU%' OR Name LIKE '%AI Boost%' OR Name LIKE '%Neural Processing%'" |
     Select-Object Name, Manufacturer, PNPClass, PNPDeviceID, Status)
 $r.accel_drivers = @(Get-CimInstance Win32_PnPSignedDriver -Filter "DeviceClass='COMPUTEACCELERATOR'" |
     Select-Object DeviceID, DriverVersion, @{n='DriverDate'; e={ if ($_.DriverDate) { $_.DriverDate.ToString('yyyy-MM-dd') } }})
