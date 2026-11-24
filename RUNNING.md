@@ -65,6 +65,8 @@ The computer id is a compact hardware description (`python bench/sysinfo.py --sh
     - `<env>/images/`: rendered frames, compared with x64 in `summary.json`
 - `results/all.csv` and `results/README.md`: every run combined (CSV) and an index of the runs. GitHub shows the
   index when you open the [results](results/) folder.
+- `results/conclusions.md` (hand-written): the main conclusions across all computers, with links to each run's
+  `findings.md`.
 - `reports/<run>/report.html` and `report.md`: the report. It contains:
   - machine and environments
   - automatically derived key findings, and `findings.md` if present
@@ -94,8 +96,9 @@ results at the end of `report` and in the GitHub workflow. Results written befor
 
 1. Run the benchmark.
 2. Optionally, write `results/<run>/findings.md` and run `python benchmark.py report --results results/<run>`.
-3. Commit the new `results/<run>/` folder together with `results/all.csv` and `results/README.md` in a pull
-   request.
+3. Optionally, update `results/conclusions.md` where the new run confirms, contradicts or extends a conclusion.
+4. Commit the new `results/<run>/` folder together with `results/all.csv`, `results/README.md` and
+   `results/conclusions.md` in a pull request.
 
 ## Options for `run`
 

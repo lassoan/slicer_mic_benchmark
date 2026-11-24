@@ -63,6 +63,7 @@ def main():
     md = ["# Benchmark results", "",
           "One folder per benchmark run: `<computer id>_<date>_<time of day as 000-999>`. How to run the benchmark "
           "and add a run: [RUNNING.md](../RUNNING.md).", "",
+          "Main conclusions across all computers: [conclusions.md](conclusions.md).", "",
           "Human-readable, per run:", "",
           "- `<run>/findings.md`: conclusions and caveats, written by whoever ran the benchmark (if present)",
           "- `<run>/summary.md`: every task with times and speed-ups",

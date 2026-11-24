@@ -32,18 +32,14 @@ This takes 4–8 hours.
 
 ## Results
 
-[results/](results/README.md) has every run, with a findings summary per computer, `summary.md` and
-machine-readable CSV/JSON. The reports with charts are on the repository's GitHub Pages site.
+[results/conclusions.md](results/conclusions.md) has the main conclusions across all computers.
+[results/README.md](results/README.md) lists every run with its computer and speed-ups. Each run's folder has:
 
-First results, on a Snapdragon X Elite laptop
-([findings](results/win_arm64_cpu_snapdragon-x1e80100_12x3.42GHz_ram_32GB_gpu_adreno-x1-85_npu_hexagon_20261123_970/findings.md)):
+- `findings.md`: conclusions and caveats, written by whoever ran the benchmark
+- `summary.md`: every task with times and speed-ups
+- machine-readable CSV and JSON
 
-- **Native arm64 is 1.2–1.45× faster than x64 emulation for everything except PyTorch.**
-- **ARM64EC gives practically no speed-up.**
-- **PyTorch on arm64 is 3–7× slower than emulated x64.**
-- **ONNX Runtime is the fix:**
-  - On the arm64 CPU, it is faster than any x64 option.
-  - On the Hexagon NPU, it is a further 3–4× faster.
+The reports with charts are on the repository's GitHub Pages site.
 
 ## Sections
 
