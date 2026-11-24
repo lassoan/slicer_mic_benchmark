@@ -116,7 +116,13 @@ Rules:
   other running programs. Describe outside load only as numbers.
 - **Style:** short sentences and nested bullets, not long paragraphs.
 
-## 6. Regenerate and hand over
+## 6. Update `results/conclusions.md`
+
+This file collects the main conclusions across all computers, grouped by topic, with links to each run's
+`findings.md`. Add the new run to the list of runs at the top. Then add, change or qualify conclusions only where
+the new run confirms, contradicts or extends them. Use the same rules as for `findings.md`.
+
+## 7. Regenerate and hand over
 
 ```
 .envs\nuget-python\tools\python.exe benchmark.py report --results results/<run>
@@ -132,5 +138,5 @@ Tell the user:
 - the report path
 
 To publish, the files to commit are `results/<run>/` (logs and images are ignored by `.gitignore`),
-`results/all.csv` and `results/README.md`. Commit, push or open a pull request only when the user asks. Pushing
+`results/all.csv`, `results/README.md` and `results/conclusions.md`. Commit, push or open a pull request only when the user asks. Pushing
 to the main branch rebuilds the results website.
