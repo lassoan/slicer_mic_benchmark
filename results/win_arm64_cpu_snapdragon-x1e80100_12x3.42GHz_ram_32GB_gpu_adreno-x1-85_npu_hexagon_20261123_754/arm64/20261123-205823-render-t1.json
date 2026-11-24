@@ -1,0 +1,359 @@
+{
+ "section": "render",
+ "threads": 1,
+ "repeats": 3,
+ "warmup": 1,
+ "timestamp": "2026-11-23T20:58:23",
+ "environment": {
+  "env": "arm64",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:31:18) [MSC v.1943 64 bit (ARM64)]",
+  "executable": "<repo>/.envs/arm64/Scripts/python.exe",
+  "python_platform": "win-arm64",
+  "machine": "ARM64",
+  "windows": "10.0.26300",
+  "cpu": "Snapdragon(R) X 12-core X1E80100 @ 3.40 GHz",
+  "logical_cpus": 12,
+  "memory_gb": 31.6,
+  "packages": {
+   "numpy": "2.5.5",
+   "scipy": "1.18.1",
+   "simpleitk": "2.5.5",
+   "vtk": "9.7.2.dev0",
+   "pynrrd": "1.1.4",
+   "nibabel": "5.5.0",
+   "pydicom": "3.0.2",
+   "torch": "2.15.0+cpu",
+   "monai": "1.6.2",
+   "TotalSegmentator": "2.18.0",
+   "nnunetv2": "2.8.1",
+   "scikit-image": "0.26.0",
+   "connected-components-3d": "4.1.1"
+  },
+  "python_exe_arch": "arm64",
+  "python_dll_arch": "arm64"
+ },
+ "loaded_modules": {
+  "summary": {
+   "arm64": 140,
+   "arm64x": 5
+  },
+  "modules": {
+   "<repo>/.envs/arm64/Lib/site-packages/SimpleITK/_SimpleITK.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/charset_normalizer/cd.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/charset_normalizer/md.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy.libs/msvcp140-9cb625fcbc2fbbd6fca1aee8b24b0ebe.dll": "arm64x",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy.libs/scipy_openblas-ff6d319c52b3e1955d73aac19764c8c0.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/_core/_multiarray_umath.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/fft/_pocketfft_umath.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/linalg/_umath_linalg.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/random/_bounded_integers.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/random/_common.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/random/_generator.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/random/_mt19937.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/random/_pcg64.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/random/_philox.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/random/_sfc64.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/random/bit_generator.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/random/mtrand.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/psutil/_psutil_windows.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy.libs/msvcp140-5f1c5dd31916990d94181e07bc3afb32.dll": "arm64x",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy.libs/scipy_openblas-d732e798918b18abdd4ca268b093c070.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/_cyutility.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/_lib/_ccallback_c.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/_lib/_uarray/_uarray.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/fft/_duccfft/pyduccfft.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/_batched_linalg.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/_cythonized_array_utils.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/_decomp_update.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/_fblas.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/_flapack.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/_internal_matfuncs.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/_linalg_pythran.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/_solve_toeplitz.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/cython_blas.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/cython_lapack.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/ndimage/_nd_image.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/ndimage/_ni_label.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/ndimage/_rank_filter_1d.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/special/_comb.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/special/_ellip_harm_2.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/special/_gufuncs.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/special/_specfun.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/special/_special_ufuncs.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/special/_ufuncs.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/special/_ufuncs_cxx.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonCache-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonColor-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonComputationalGeometry-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonCore-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonDataModel-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonExecutionModel-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonMath-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonMisc-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonSystem-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonTransforms-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkDICOMParser-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkFiltersCellGrid-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkFiltersCore-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkFiltersGeneral-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkFiltersGeometry-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkFiltersHybrid-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkFiltersHyperTree-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkFiltersReduction-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkFiltersSources-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkFiltersVerdict-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkIOCellGrid-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkIOCore-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkIOImage-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkIOLegacy-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkImagingCore-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkImagingMath-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkImagingSources-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkImagingStatistics-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkImagingStencil-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkParallelCore-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkRenderingCore-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkRenderingFreeType-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkRenderingHyperTreeGrid-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkRenderingLabel-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkRenderingOpenGL2-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkRenderingUI-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkRenderingVolume-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkRenderingVolumeOpenGL2-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkWrappingPythonCore3.12-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkfmt-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkfreetype-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkglad-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkjpeg-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkjsoncpp-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkkissfft-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkloguru-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtklz4-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtklzma-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkmetaio-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkpng-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkpugixml-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkscn-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtksys-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtktiff-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtktoken-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkverdict-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkzlib-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkCommonCore.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkCommonDataModel.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkCommonExecutionModel.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkCommonMath.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkCommonMisc.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkCommonSystem.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkCommonTransforms.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkFiltersCore.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkFiltersGeneral.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkIOCore.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkIOImage.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkImagingCore.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkImagingMath.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkImagingStatistics.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkImagingStencil.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkParallelCore.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkRenderingCore.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkRenderingFreeType.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkRenderingHyperTreeGrid.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkRenderingLabel.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkRenderingOpenGL2.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkRenderingUI.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkRenderingVolume.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkRenderingVolumeOpenGL2.cp312-win_arm64.pyd": "arm64",
+   "<python>/DLLs/_bz2.pyd": "arm64",
+   "<python>/DLLs/_ctypes.pyd": "arm64",
+   "<python>/DLLs/_decimal.pyd": "arm64",
+   "<python>/DLLs/_hashlib.pyd": "arm64",
+   "<python>/DLLs/_lzma.pyd": "arm64",
+   "<python>/DLLs/_queue.pyd": "arm64",
+   "<python>/DLLs/_socket.pyd": "arm64",
+   "<python>/DLLs/_uuid.pyd": "arm64",
+   "<python>/DLLs/_wmi.pyd": "arm64",
+   "<python>/DLLs/libcrypto-3-arm64.dll": "arm64",
+   "<python>/DLLs/libffi-8.dll": "arm64",
+   "<python>/DLLs/select.pyd": "arm64",
+   "<python>/DLLs/unicodedata.pyd": "arm64",
+   "<python>/python.exe": "arm64",
+   "<python>/python3.dll": "arm64",
+   "<python>/python312.dll": "arm64",
+   "<python>/vcruntime140.dll": "arm64x",
+   "<programfiles>/WindowsApps/Microsoft.D3DMappingLayers_1.2608.3.0_arm64__8wekyb3d8bbwe/arm64/OpenGLOn12.dll": "arm64",
+   "<programdata>/Microsoft/Windows Defender/Platform/4.18.26100.4-0/MpOAV.dll": "arm64x",
+   "<home>/AppData/Local/Microsoft/OneDrive/26.212.1029.0006/msvcp140.dll": "arm64x"
+  }
+ },
+ "tasks": {
+  "4a_surface_full_first_frame_case01": {
+   "median_s": 0.07940580000013142,
+   "times_s": [
+    0.07940580000013142,
+    0.0794463000001997,
+    0.0686292999998841
+   ],
+   "first_s": 0.14266259999931208,
+   "signature": {}
+  },
+  "4a_surface_full_360_frames_case01": {
+   "median_s": 0.9994048999997176,
+   "times_s": [
+    1.048661799999536,
+    0.9994048999997176,
+    0.9984315000001516
+   ],
+   "first_s": 1.14340699999957,
+   "signature": {
+    "frames": 360,
+    "fps": 361.86,
+    "last_frame_mean": 38.05
+   }
+  },
+  "4a_surface_decimated_first_frame_case01": {
+   "median_s": 0.053042200000163575,
+   "times_s": [
+    0.05395739999949001,
+    0.05233490000046004,
+    0.053042200000163575
+   ],
+   "first_s": 0.0592413000003944,
+   "signature": {}
+  },
+  "4a_surface_decimated_360_frames_case01": {
+   "median_s": 0.6278318000004219,
+   "times_s": [
+    1.3371788999993441,
+    0.6278318000004219,
+    0.5735641999999643
+   ],
+   "first_s": 0.703141300000425,
+   "signature": {
+    "frames": 360,
+    "fps": 621.19,
+    "last_frame_mean": 38.5
+   }
+  },
+  "4b_gpu_volume_first_frame_case01": {
+   "median_s": 0.1370206000001417,
+   "times_s": [
+    0.13793259999965812,
+    0.1370206000001417,
+    0.12670650000018213
+   ],
+   "first_s": 0.24710900000081892,
+   "signature": {}
+  },
+  "4b_gpu_volume_60_frames_case01": {
+   "median_s": 9.601424299999962,
+   "times_s": [
+    9.986229099999946,
+    9.601424299999962,
+    9.502811800000018
+   ],
+   "first_s": 9.50561259999995,
+   "signature": {
+    "frames": 60,
+    "fps": 6.67,
+    "last_frame_mean": 35.88
+   }
+  },
+  "4c_cpu_volume_36_frames_case01": {
+   "median_s": 42.871849199999815,
+   "times_s": [
+    42.871849199999815,
+    43.010338900000534,
+    42.7819343000001
+   ],
+   "first_s": 42.99594059999981,
+   "signature": {
+    "frames": 36,
+    "fps": 0.96,
+    "last_frame_mean": 36.83
+   }
+  },
+  "4a_surface_full_first_frame_case18": {
+   "median_s": 0.15161929999976564,
+   "times_s": [
+    0.15161929999976564,
+    0.19306560000040918,
+    0.13409860000047047
+   ],
+   "first_s": 0.1963768000005075,
+   "signature": {}
+  },
+  "4a_surface_full_360_frames_case18": {
+   "median_s": 2.2431930000002467,
+   "times_s": [
+    2.285198099999434,
+    2.228041200000007,
+    2.2431930000002467
+   ],
+   "first_s": 2.428103700000065,
+   "signature": {
+    "frames": 360,
+    "fps": 163.07,
+    "last_frame_mean": 44.59
+   }
+  },
+  "4a_surface_decimated_first_frame_case18": {
+   "median_s": 0.06434159999935218,
+   "times_s": [
+    0.06109680000008666,
+    0.06524530000024242,
+    0.06434159999935218
+   ],
+   "first_s": 0.08111800000006042,
+   "signature": {}
+  },
+  "4a_surface_decimated_360_frames_case18": {
+   "median_s": 1.1331305999992765,
+   "times_s": [
+    0.969293000000107,
+    1.501334599999609,
+    1.1331305999992765
+   ],
+   "first_s": 1.1582473999997092,
+   "signature": {
+    "frames": 360,
+    "fps": 355.8,
+    "last_frame_mean": 45.22
+   }
+  },
+  "4b_gpu_volume_first_frame_case18": {
+   "median_s": 0.5114534000003914,
+   "times_s": [
+    0.5124183999996603,
+    0.5114534000003914,
+    0.5068914000003133
+   ],
+   "first_s": 1.1928587000002153,
+   "signature": {}
+  },
+  "4b_gpu_volume_60_frames_case18": {
+   "median_s": 26.067796299999827,
+   "times_s": [
+    26.067796299999827,
+    26.064928699999655,
+    26.07625300000018
+   ],
+   "first_s": 26.10868560000017,
+   "signature": {
+    "frames": 60,
+    "fps": 2.42,
+    "last_frame_mean": 37.34
+   }
+  }
+ },
+ "cases": [
+  "case01",
+  "case18"
+ ],
+ "gl_info": "OpenGL vendor string:  Microsoft Corporation\nOpenGL renderer string:  D3D12 (Qualcomm(R) Adreno(TM) X1-85 GPU)\nOpenGL version string:  4.6 (Core Profile) Mesa 26.3.0-devel (git-e3fc7749c6)\nOpenGL extensions:  \n  GL_AMD_conservative_depth\n  GL_AMD_draw_buffers_blend\n  GL_AMD_gpu_shader_int64\n  GL_AMD_multi_draw_indirect\n  GL_AMD_query_buffer_object\n  GL_AMD_shader_stencil_export\n  GL_AMD_shader_trinary_minmax\n  GL_AMD_texture_texture4\n  GL_AMD_vertex_shader_layer\n  GL_AMD_vertex_shader_viewport_index\n  GL_ANGLE_texture_compression_dxt3\n  GL_ANGLE_texture_compression_dxt5\n  GL_ARB_ES2_compatibility\n  GL_ARB_ES3_1_compatibility\n  GL_ARB_ES3_2_compatibility\n  GL_ARB_ES3_compatibility\n  GL_ARB_arrays_of_arrays\n  GL_ARB_base_instance\n  GL_ARB_blend_func_extended\n  GL_ARB_buffer_storage\n  GL_ARB_clear_buffer_object\n  GL_ARB_clear_texture\n  GL_ARB_clip_control\n  GL_ARB_compressed_texture_pixel_storage\n  GL_ARB_compute_shader\n  GL_ARB_compute_variable_group_size\n  GL_ARB_conditional_render_inverted\n  GL_ARB_conservative_depth\n  GL_ARB_copy_buffer\n  GL_ARB_copy_image\n  GL_ARB_cull_distance\n  GL_ARB_debug_output\n  GL_ARB_depth_buffer_float\n  GL_ARB_depth_clamp\n  GL_ARB_derivative_control\n  GL_ARB_direct_state_access\n  GL_ARB_draw_buffers\n  GL_ARB_draw_buffers_blend\n  GL_ARB_draw_elements_base_vertex\n  GL_ARB_draw_indirect\n  GL_ARB_draw_instanced\n  GL_ARB_enhanced_layouts\n  GL_ARB_explicit_attrib_location\n  GL_ARB_explicit_uniform_location\n  GL_ARB_fragment_coord_conventions\n  GL_ARB_fragment_layer_viewport\n  GL_ARB_fragment_shader\n  GL_ARB_framebuffer_no_attachments\n  GL_ARB_framebuffer_object\n  GL_ARB_framebuffer_sRGB\n  GL_ARB_get_program_binary\n  GL_ARB_get_texture_sub_image\n  GL_ARB_gl_spirv\n  GL_ARB_gpu_shader5\n  GL_ARB_gpu_shader_fp64\n  GL_ARB_gpu_shader_int64\n  GL_ARB_half_float_pixel\n  GL_ARB_half_float_vertex\n  GL_ARB_indirect_parameters\n  GL_ARB_instanced_arrays\n  GL_ARB_internalformat_query\n  GL_ARB_internalformat_query2\n  GL_ARB_invalidate_subdata\n  GL_ARB_map_buffer_alignment\n  GL_ARB_map_buffer_range\n  GL_ARB_multi_bind\n  GL_ARB_multi_draw_indirect\n  GL_ARB_occlusion_query2\n  GL_ARB_parallel_shader_compile\n  GL_ARB_pipeline_statistics_query\n  GL_ARB_pixel_buffer_object\n  GL_ARB_point_sprite\n  GL_ARB_polygon_offset_clamp\n  GL_ARB_program_interface_query\n  GL_ARB_provoking_vertex\n  GL_ARB_query_buffer_object\n  GL_ARB_robust_buffer_access_behavior\n  GL_ARB_robustness\n  GL_ARB_sample_shading\n  GL_ARB_sampler_objects\n  GL_ARB_seamless_cube_map\n  GL_ARB_separate_shader_objects\n  GL_ARB_shader_atomic_counter_ops\n  GL_ARB_shader_atomic_counters\n  GL_ARB_shader_ballot\n  GL_ARB_shader_bit_encoding\n  GL_ARB_shader_draw_parameters\n  GL_ARB_shader_group_vote\n  GL_ARB_shader_image_load_store\n  GL_ARB_shader_image_size\n  GL_ARB_shader_objects\n  GL_ARB_shader_precision\n  GL_ARB_shader_stencil_export\n  GL_ARB_shader_storage_buffer_object\n  GL_ARB_shader_subroutine\n  GL_ARB_shader_texture_image_samples\n  GL_ARB_shader_texture_lod\n  GL_ARB_shading_language_420pack\n  GL_ARB_shading_language_include\n  GL_ARB_shading_language_packing\n  GL_ARB_spirv_extensions\n  GL_ARB_stencil_texturing\n  GL_ARB_sync\n  GL_ARB_tessellation_shader\n  GL_ARB_texture_barrier\n  GL_ARB_texture_border_clamp\n  GL_ARB_texture_buffer_object\n  GL_ARB_texture_buffer_object_rgb32\n  GL_ARB_texture_buffer_range\n  GL_ARB_texture_compression_bptc\n  GL_ARB_texture_compression_rgtc\n  GL_ARB_texture_cube_map_array\n  GL_ARB_texture_filter_anisotropic\n  GL_ARB_texture_float\n  GL_ARB_texture_gather\n  GL_ARB_texture_mirror_clamp_to_edge\n  GL_ARB_texture_multisample\n  GL_ARB_texture_non_power_of_two\n  GL_ARB_texture_query_levels\n  GL_ARB_texture_query_lod\n  GL_ARB_texture_rectangle\n  GL_ARB_texture_rg\n  GL_ARB_texture_rgb10_a2ui\n  GL_ARB_texture_stencil8\n  GL_ARB_texture_storage\n  GL_ARB_texture_storage_multisample\n  GL_ARB_texture_swizzle\n  GL_ARB_texture_view\n  GL_ARB_timer_query\n  GL_ARB_transform_feedback2\n  GL_ARB_transform_feedback3\n  GL_ARB_transform_feedback_instanced\n  GL_ARB_transform_feedback_overflow_query\n  GL_ARB_uniform_buffer_object\n  GL_ARB_vertex_array_bgra\n  GL_ARB_vertex_array_object\n  GL_ARB_vertex_attrib_64bit\n  GL_ARB_vertex_attrib_binding\n  GL_ARB_vertex_buffer_object\n  GL_ARB_vertex_shader\n  GL_ARB_vertex_type_10f_11f_11f_rev\n  GL_ARB_vertex_type_2_10_10_10_rev\n  GL_ARB_viewport_array\n  GL_ATI_blend_equation_separate\n  GL_ATI_meminfo\n  GL_ATI_texture_float\n  GL_EXT_EGL_image_storage\n  GL_EXT_EGL_image_storage_compression\n  GL_EXT_EGL_sync\n  GL_EXT_abgr\n  GL_EXT_blend_equation_separate\n  GL_EXT_debug_label\n  GL_EXT_draw_buffers2\n  GL_EXT_draw_instanced\n  GL_EXT_framebuffer_blit\n  GL_EXT_framebuffer_multisample\n  GL_EXT_framebuffer_multisample_blit_scaled\n  GL_EXT_framebuffer_object\n  GL_EXT_framebuffer_sRGB\n  GL_EXT_memory_object\n  GL_EXT_memory_object_win32\n  GL_EXT_packed_depth_stencil\n  GL_EXT_packed_float\n  GL_EXT_pixel_buffer_object\n  GL_EXT_polygon_offset_clamp\n  GL_EXT_provoking_vertex\n  GL_EXT_semaphore\n  GL_EXT_semaphore_win32\n  GL_EXT_shader_integer_mix\n  GL_EXT_texture_array\n  GL_EXT_texture_compression_dxt1\n  GL_EXT_texture_compression_rgtc\n  GL_EXT_texture_compression_s3tc\n  GL_EXT_texture_filter_anisotropic\n  GL_EXT_texture_integer\n  GL_EXT_texture_sRGB\n  GL_EXT_texture_sRGB_decode\n  GL_EXT_texture_shared_exponent\n  GL_EXT_texture_snorm\n  GL_EXT_texture_storage\n  GL_EXT_texture_swizzle\n  GL_EXT_timer_query\n  GL_EXT_transform_feedback\n  GL_EXT_vertex_array_bgra\n  GL_EXT_vertex_attrib_64bit\n  GL_IBM_multimode_draw_arrays\n  GL_KHR_context_flush_control\n  GL_KHR_debug\n  GL_KHR_no_error\n  GL_KHR_parallel_shader_compile\n  GL_KHR_robust_buffer_access_behavior\n  GL_KHR_robustness\n  GL_KHR_texture_compression_astc_ldr\n  GL_KHR_texture_compression_astc_sliced_3d\n  GL_MESA_framebuffer_flip_y\n  GL_MESA_pack_invert\n  GL_MESA_shader_integer_functions\n  GL_MESA_texture_signed_rgba\n  GL_NVX_gpu_memory_info\n  GL_NV_conditional_render\n  GL_NV_copy_image\n  GL_NV_depth_clamp\n  GL_NV_packed_depth_stencil\n  GL_NV_texture_barrier\n  GL_OES_EGL_image\n  GL_S3_s3tc\nPixelFormat Descriptor:\ndepth:  24\nclass:  TrueColor\nbuffer size:  32\nlevel:  0\nrenderType:  rgba\ndouble buffer:  True\nstereo:  False\nhardware acceleration:  True\nrgba:  redSize=8 greenSize=8blueSize=8alphaSize=8\naux buffers:  0\ndepth size:  24\nstencil size:  0\naccum:  redSize=0 greenSize=0blueSize=0alphaSize=0\n",
+ "section_wall_time_s": 378.4601957999994,
+ "library_threads": {
+  "SimpleITK": 1,
+  "vtk_smp_backend": "Sequential",
+  "vtk_smp_threads": 1
+ }
+}

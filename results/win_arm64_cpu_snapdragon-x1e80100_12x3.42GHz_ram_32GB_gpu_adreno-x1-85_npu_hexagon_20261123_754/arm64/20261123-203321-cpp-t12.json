@@ -1,0 +1,481 @@
+{
+ "section": "cpp",
+ "threads": 12,
+ "repeats": 3,
+ "warmup": 1,
+ "timestamp": "2026-11-23T20:33:21",
+ "environment": {
+  "env": "arm64",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:31:18) [MSC v.1943 64 bit (ARM64)]",
+  "executable": "<repo>/.envs/arm64/Scripts/python.exe",
+  "python_platform": "win-arm64",
+  "machine": "ARM64",
+  "windows": "10.0.26300",
+  "cpu": "Snapdragon(R) X 12-core X1E80100 @ 3.40 GHz",
+  "logical_cpus": 12,
+  "memory_gb": 31.6,
+  "packages": {
+   "numpy": "2.5.5",
+   "scipy": "1.18.1",
+   "simpleitk": "2.5.5",
+   "vtk": "9.7.2.dev0",
+   "pynrrd": "1.1.4",
+   "nibabel": "5.5.0",
+   "pydicom": "3.0.2",
+   "torch": "2.15.0+cpu",
+   "monai": "1.6.2",
+   "TotalSegmentator": "2.18.0",
+   "nnunetv2": "2.8.1",
+   "scikit-image": "0.26.0",
+   "connected-components-3d": "4.1.1"
+  },
+  "python_exe_arch": "arm64",
+  "python_dll_arch": "arm64"
+ },
+ "loaded_modules": {
+  "summary": {
+   "arm64": 100,
+   "arm64x": 5
+  },
+  "modules": {
+   "<repo>/.envs/arm64/Lib/site-packages/SimpleITK/_SimpleITK.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/charset_normalizer/cd.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/charset_normalizer/md.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy.libs/msvcp140-9cb625fcbc2fbbd6fca1aee8b24b0ebe.dll": "arm64x",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy.libs/scipy_openblas-ff6d319c52b3e1955d73aac19764c8c0.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/_core/_multiarray_umath.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/fft/_pocketfft_umath.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/linalg/_umath_linalg.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/random/_bounded_integers.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/random/_common.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/random/_generator.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/random/_mt19937.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/random/_pcg64.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/random/_philox.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/random/_sfc64.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/random/bit_generator.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/random/mtrand.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/psutil/_psutil_windows.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy.libs/msvcp140-5f1c5dd31916990d94181e07bc3afb32.dll": "arm64x",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy.libs/scipy_openblas-d732e798918b18abdd4ca268b093c070.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/_cyutility.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/_lib/_ccallback_c.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/_lib/_uarray/_uarray.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/fft/_duccfft/pyduccfft.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/_batched_linalg.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/_cythonized_array_utils.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/_decomp_update.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/_fblas.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/_flapack.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/_internal_matfuncs.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/_linalg_pythran.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/_solve_toeplitz.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/cython_blas.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/linalg/cython_lapack.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/ndimage/_nd_image.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/ndimage/_ni_label.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/ndimage/_rank_filter_1d.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/special/_comb.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/special/_ellip_harm_2.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/special/_gufuncs.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/special/_specfun.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/special/_special_ufuncs.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/special/_ufuncs.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/special/_ufuncs_cxx.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonCache-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonComputationalGeometry-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonCore-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonDataModel-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonExecutionModel-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonMath-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonMisc-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonSystem-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkCommonTransforms-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkFiltersCellGrid-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkFiltersCore-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkFiltersReduction-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkIOCellGrid-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkIOCore-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkIOLegacy-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkImagingCore-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkImagingStatistics-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkImagingStencil-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkParallelCore-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkWrappingPythonCore3.12-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkfmt-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkkissfft-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkloguru-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtklz4-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtklzma-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkpugixml-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkscn-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtksys-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtktoken-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtk.libs/vtkzlib-9.7.2.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkCommonCore.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkCommonDataModel.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkCommonExecutionModel.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkCommonMath.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkCommonMisc.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkCommonSystem.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkCommonTransforms.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkFiltersCore.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkImagingCore.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkImagingStatistics.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkImagingStencil.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/vtkmodules/vtkParallelCore.cp312-win_arm64.pyd": "arm64",
+   "<python>/DLLs/_bz2.pyd": "arm64",
+   "<python>/DLLs/_ctypes.pyd": "arm64",
+   "<python>/DLLs/_decimal.pyd": "arm64",
+   "<python>/DLLs/_hashlib.pyd": "arm64",
+   "<python>/DLLs/_lzma.pyd": "arm64",
+   "<python>/DLLs/_queue.pyd": "arm64",
+   "<python>/DLLs/_socket.pyd": "arm64",
+   "<python>/DLLs/_uuid.pyd": "arm64",
+   "<python>/DLLs/_wmi.pyd": "arm64",
+   "<python>/DLLs/libcrypto-3-arm64.dll": "arm64",
+   "<python>/DLLs/libffi-8.dll": "arm64",
+   "<python>/DLLs/select.pyd": "arm64",
+   "<python>/DLLs/unicodedata.pyd": "arm64",
+   "<python>/python.exe": "arm64",
+   "<python>/python3.dll": "arm64",
+   "<python>/python312.dll": "arm64",
+   "<python>/vcruntime140.dll": "arm64x",
+   "<programdata>/Microsoft/Windows Defender/Platform/4.18.26100.4-0/MpOAV.dll": "arm64x",
+   "<home>/AppData/Local/Microsoft/OneDrive/26.212.1029.0006/msvcp140.dll": "arm64x"
+  }
+ },
+ "tasks": {
+  "3a_curvature_anisotropic_diffusion": {
+   "median_s": 4.1889281999997365,
+   "times_s": [
+    4.187644300000102,
+    4.1889281999997365,
+    4.203047699999843
+   ],
+   "first_s": 4.304337399999895,
+   "signature": {
+    "case01": [
+     -45.33,
+     308.1
+    ],
+    "case06": [
+     72.77,
+     249.5
+    ],
+    "case11": [
+     -14.02,
+     238.6
+    ],
+    "case14": [
+     8.407,
+     209.8
+    ],
+    "case18": [
+     -1.765,
+     201.0
+    ]
+   }
+  },
+  "3a_gradient_anisotropic_diffusion": {
+   "median_s": 3.841885700000148,
+   "times_s": [
+    3.8350312000002305,
+    3.841885700000148,
+    3.8486740999996982
+   ],
+   "first_s": 3.7613868999997067,
+   "signature": {
+    "case01": [
+     -45.07,
+     307.9
+    ],
+    "case06": [
+     72.82,
+     249.4
+    ],
+    "case11": [
+     -13.81,
+     238.9
+    ],
+    "case14": [
+     8.549,
+     209.8
+    ],
+    "case18": [
+     -1.696,
+     201.4
+    ]
+   }
+  },
+  "3b_bone_labelmap_threshold_cc_relabel": {
+   "median_s": 0.6418383999998696,
+   "times_s": [
+    0.6418383999998696,
+    0.6657909999998992,
+    0.6403116000001319
+   ],
+   "first_s": 0.5942304000000149,
+   "signature": {
+    "case01": 38,
+    "case06": 61,
+    "case11": 6,
+    "case14": 22,
+    "case18": 33
+   }
+  },
+  "3c_label_intensity_statistics": {
+   "median_s": 1.6198090999996566,
+   "times_s": [
+    1.534534800000074,
+    1.6198090999996566,
+    1.7997464000000036
+   ],
+   "first_s": 1.698186799999803,
+   "signature": {
+    "case01": {
+     "n": 39,
+     "mean1": 452.7,
+     "count1": 245047
+    },
+    "case06": {
+     "n": 62,
+     "mean1": 495.9,
+     "count1": 745121
+    },
+    "case11": {
+     "n": 7,
+     "mean1": 503.4,
+     "count1": 447979
+    },
+    "case14": {
+     "n": 23,
+     "mean1": 475.6,
+     "count1": 599411
+    },
+    "case18": {
+     "n": 34,
+     "mean1": 469.7,
+     "count1": 1352093
+    }
+   }
+  },
+  "3c_label_shape_statistics": {
+   "median_s": 0.7912350000001425,
+   "times_s": [
+    0.7912350000001425,
+    0.802055399999972,
+    0.7884702000001198
+   ],
+   "first_s": 0.7970465999997032,
+   "signature": {
+    "case01": {
+     "vol1": 197800.0,
+     "obb1": [
+      147.1,
+      306.6,
+      216.1
+     ]
+    },
+    "case06": {
+     "vol1": 368400.0,
+     "obb1": [
+      108.8,
+      272.3,
+      277.4
+     ]
+    },
+    "case11": {
+     "vol1": 987100.0,
+     "obb1": [
+      175.2,
+      311.9,
+      424.3
+     ]
+    },
+    "case14": {
+     "vol1": 365900.0,
+     "obb1": [
+      149.4,
+      291.6,
+      271.2
+     ]
+    },
+    "case18": {
+     "vol1": 417800.0,
+     "obb1": [
+      211.9,
+      311.7,
+      269.6
+     ]
+    }
+   }
+  },
+  "3d_histogram_vtkImageAccumulate": {
+   "median_s": 1.2500052999998843,
+   "times_s": [
+    1.2756361000001561,
+    1.2500052999998843,
+    1.2361887000001843
+   ],
+   "first_s": 1.2782452000001285,
+   "signature": {
+    "case01": [
+     55050240,
+     -651.4
+    ],
+    "case06": [
+     81264640,
+     -671.8
+    ],
+    "case11": [
+     27000832,
+     -445.4
+    ],
+    "case14": [
+     69730304,
+     -590.6
+    ],
+    "case18": [
+     95682560,
+     -932.0
+    ]
+   }
+  },
+  "3d_image_statistics_sitk": {
+   "median_s": 0.21619280000004437,
+   "times_s": [
+    0.19434489999957805,
+    0.21619280000004437,
+    0.21741989999964062
+   ],
+   "first_s": 0.2053498000000218,
+   "signature": {
+    "case01": [
+     -1024.0,
+     1373.0,
+     -651.4
+    ],
+    "case06": [
+     -1024.0,
+     1457.0,
+     -671.8
+    ],
+    "case11": [
+     -1024.0,
+     3069.0,
+     -445.4
+    ],
+    "case14": [
+     -1024.0,
+     1582.0,
+     -590.6
+    ],
+    "case18": [
+     -3024.0,
+     3071.0,
+     -932.0
+    ]
+   }
+  },
+  "3e_flying_edges": {
+   "median_s": 0.12677759999996852,
+   "times_s": [
+    0.12677759999996852,
+    0.12458629999991899,
+    0.13031240000009348
+   ],
+   "first_s": 0.12290919999986727,
+   "signature": {
+    "case01": [
+     532263,
+     1065964
+    ],
+    "case06": [
+     1066478,
+     2138300
+    ],
+    "case11": [
+     535993,
+     1074604
+    ],
+    "case14": [
+     778286,
+     1551710
+    ],
+    "case18": [
+     1885487,
+     3786146
+    ]
+   }
+  },
+  "3e_windowed_sinc_smoothing": {
+   "median_s": 1.1813221000002159,
+   "times_s": [
+    1.1500405000001592,
+    1.1813221000002159,
+    1.2053567000002658
+   ],
+   "first_s": 1.147472199999811,
+   "signature": {
+    "case01": 292600.0,
+    "case06": 458500.0,
+    "case11": 529200.0,
+    "case14": 344000.0,
+    "case18": 540400.0
+   }
+  },
+  "3e_polydata_normals": {
+   "median_s": 2.4693421000001763,
+   "times_s": [
+    2.307108799999696,
+    2.4778387999999723,
+    2.4693421000001763
+   ],
+   "first_s": 2.3214351999999963,
+   "signature": {
+    "case01": 532263,
+    "case06": 1066478,
+    "case11": 535993,
+    "case14": 778286,
+    "case18": 1885487
+   }
+  },
+  "3f_polydata_to_labelmap_stencil": {
+   "median_s": 9.757913400000234,
+   "times_s": [
+    9.73505010000008,
+    9.82083560000001,
+    9.757913400000234
+   ],
+   "first_s": 8.547526599999856,
+   "signature": {
+    "case01": 454941,
+    "case06": 1435409,
+    "case11": 440950,
+    "case14": 1179078,
+    "case18": 2198618
+   },
+   "dice": {
+    "case01": 0.9618,
+    "case06": 0.9794,
+    "case11": 0.9571,
+    "case14": 0.9767,
+    "case18": 0.969
+   }
+  }
+ },
+ "cases": [
+  "case01",
+  "case06",
+  "case11",
+  "case14",
+  "case18"
+ ],
+ "section_wall_time_s": 104.71973500000013,
+ "library_threads": {
+  "SimpleITK": 12,
+  "vtk_smp_backend": "STDThread",
+  "vtk_smp_threads": 12
+ }
+}

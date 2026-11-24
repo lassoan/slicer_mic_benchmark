@@ -1,0 +1,50 @@
+name: Results website
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "results/**"
+      - "scripts/make_report.py"
+      - "scripts/make_site.py"
+      - "scripts/collect_results.py"
+      - "scripts/compare_reps.py"
+      - "bench/sysinfo.py"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install markdown==3.11.3
+      - name: Check that the results contain no personal information
+        run: python scripts/check_privacy.py results
+      - name: Build the website
+        run: python scripts/make_site.py site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

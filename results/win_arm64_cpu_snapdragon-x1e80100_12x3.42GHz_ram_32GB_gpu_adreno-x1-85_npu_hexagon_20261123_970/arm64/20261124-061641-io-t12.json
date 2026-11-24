@@ -1,0 +1,1135 @@
+{
+ "section": "io",
+ "threads": 12,
+ "repeats": 3,
+ "warmup": 1,
+ "timestamp": "2026-11-24T06:16:41",
+ "environment": {
+  "env": "arm64",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:31:18) [MSC v.1943 64 bit (ARM64)]",
+  "executable": "<repo>/.envs/arm64/Scripts/python.exe",
+  "python_platform": "win-arm64",
+  "machine": "ARM64",
+  "windows": "10.0.26300",
+  "cpu": "Snapdragon(R) X 12-core X1E80100 @ 3.40 GHz",
+  "logical_cpus": 12,
+  "memory_gb": 31.6,
+  "packages": {
+   "numpy": "2.5.5",
+   "scipy": "1.18.1",
+   "simpleitk": "2.5.5",
+   "vtk": "9.7.2.dev0",
+   "pynrrd": "1.1.4",
+   "nibabel": "5.5.0",
+   "pydicom": "3.0.2",
+   "torch": "2.15.0+cpu",
+   "monai": "1.6.2",
+   "TotalSegmentator": "2.18.0",
+   "nnunetv2": "2.8.1",
+   "scikit-image": "0.26.0",
+   "connected-components-3d": "4.1.1"
+  },
+  "python_exe_arch": "arm64",
+  "python_dll_arch": "arm64"
+ },
+ "loaded_modules": {
+  "summary": {
+   "arm64": 31,
+   "arm64x": 4
+  },
+  "modules": {
+   "<repo>/.envs/arm64/Lib/site-packages/PIL/_imaging.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/PIL/_imagingcms.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/SimpleITK/_SimpleITK.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/charset_normalizer/cd.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/charset_normalizer/md.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy.libs/msvcp140-9cb625fcbc2fbbd6fca1aee8b24b0ebe.dll": "arm64x",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy.libs/scipy_openblas-ff6d319c52b3e1955d73aac19764c8c0.dll": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/_core/_multiarray_umath.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/numpy/linalg/_umath_linalg.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/psutil/_psutil_windows.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/_cyutility.cp312-win_arm64.pyd": "arm64",
+   "<repo>/.envs/arm64/Lib/site-packages/scipy/_lib/_ccallback_c.cp312-win_arm64.pyd": "arm64",
+   "<python>/DLLs/_bz2.pyd": "arm64",
+   "<python>/DLLs/_ctypes.pyd": "arm64",
+   "<python>/DLLs/_decimal.pyd": "arm64",
+   "<python>/DLLs/_elementtree.pyd": "arm64",
+   "<python>/DLLs/_hashlib.pyd": "arm64",
+   "<python>/DLLs/_lzma.pyd": "arm64",
+   "<python>/DLLs/_queue.pyd": "arm64",
+   "<python>/DLLs/_socket.pyd": "arm64",
+   "<python>/DLLs/_ssl.pyd": "arm64",
+   "<python>/DLLs/_uuid.pyd": "arm64",
+   "<python>/DLLs/_wmi.pyd": "arm64",
+   "<python>/DLLs/libcrypto-3-arm64.dll": "arm64",
+   "<python>/DLLs/libffi-8.dll": "arm64",
+   "<python>/DLLs/libssl-3-arm64.dll": "arm64",
+   "<python>/DLLs/pyexpat.pyd": "arm64",
+   "<python>/DLLs/select.pyd": "arm64",
+   "<python>/DLLs/unicodedata.pyd": "arm64",
+   "<python>/python.exe": "arm64",
+   "<python>/python3.dll": "arm64",
+   "<python>/python312.dll": "arm64",
+   "<python>/vcruntime140.dll": "arm64x",
+   "<programdata>/Microsoft/Windows Defender/Platform/4.18.26100.4-0/MpOAV.dll": "arm64x",
+   "<home>/AppData/Local/Microsoft/OneDrive/26.212.1029.0006/msvcp140.dll": "arm64x"
+  }
+ },
+ "tasks": {
+  "1a_read_dicom_headers_sitk": {
+   "median_s": 6.931969299999764,
+   "times_s": [
+    6.946872599997732,
+    6.896867700001167,
+    6.931969299999764
+   ],
+   "first_s": 7.2487747999985,
+   "signature": {
+    "files": 4267
+   }
+  },
+  "1a_read_dicom_headers_pydicom": {
+   "median_s": 1.788699099997757,
+   "times_s": [
+    1.7799336000025505,
+    1.788699099997757,
+    1.8568965000013122
+   ],
+   "first_s": 1.8360496000022977,
+   "signature": {
+    "files": 4267,
+    "series": 20
+   }
+  },
+  "1b_check_geometry_pure_python_x50": {
+   "median_s": 0.4904655999998795,
+   "times_s": [
+    0.4911463999960688,
+    0.4904655999998795,
+    0.4888400000054389
+   ],
+   "first_s": 0.4887709000031464,
+   "signature": {
+    "case01": {
+     "1.2.826.0.1.3680043.2.1125.1.10349856497345767271749258522763940": {
+      "slices": 210,
+      "parallel": true,
+      "uniform_spacing": true,
+      "slice_spacing": 1.0,
+      "max_spacing_deviation": 0.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.8984375,
+       0.8984375
+      ],
+      "thickness": "",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case02": {
+     "1.2.826.0.1.3680043.2.1125.1.11965559194813068355935894731515844": {
+      "slices": 223,
+      "parallel": true,
+      "uniform_spacing": true,
+      "slice_spacing": 1.0,
+      "max_spacing_deviation": 0.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.95703125,
+       0.95703125
+      ],
+      "thickness": "",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case03": {
+     "1.2.826.0.1.3680043.2.1125.1.12520952175517515323332680058523170": {
+      "slices": 221,
+      "parallel": true,
+      "uniform_spacing": true,
+      "slice_spacing": 1.0,
+      "max_spacing_deviation": 0.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.9765625,
+       0.9765625
+      ],
+      "thickness": "",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case04": {
+     "1.2.826.0.1.3680043.2.1125.1.1543700067293409822950367187567394": {
+      "slices": 223,
+      "parallel": true,
+      "uniform_spacing": true,
+      "slice_spacing": 1.0,
+      "max_spacing_deviation": 0.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.9375,
+       0.9375
+      ],
+      "thickness": "",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case05": {
+     "1.2.826.0.1.3680043.2.1125.1.15635466603075487888021721620900167": {
+      "slices": 233,
+      "parallel": true,
+      "uniform_spacing": true,
+      "slice_spacing": 1.0,
+      "max_spacing_deviation": 0.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.9765625,
+       0.9765625
+      ],
+      "thickness": "",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case06": {
+     "1.2.826.0.1.3680043.2.1125.1.16201530826403193098603729357912354": {
+      "slices": 310,
+      "parallel": true,
+      "uniform_spacing": true,
+      "slice_spacing": 1.0,
+      "max_spacing_deviation": 0.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.703125,
+       0.703125
+      ],
+      "thickness": "",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case07": {
+     "1.2.826.0.1.3680043.2.1125.1.17933634158214814504206233487222230": {
+      "slices": 247,
+      "parallel": true,
+      "uniform_spacing": true,
+      "slice_spacing": 1.0,
+      "max_spacing_deviation": 0.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.78125,
+       0.78125
+      ],
+      "thickness": "",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case08": {
+     "1.2.826.0.1.3680043.2.1125.1.20717257972694535177379269529037728": {
+      "slices": 209,
+      "parallel": true,
+      "uniform_spacing": true,
+      "slice_spacing": 1.0,
+      "max_spacing_deviation": 0.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.9765625,
+       0.9765625
+      ],
+      "thickness": "",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case09": {
+     "1.2.826.0.1.3680043.2.1125.1.2278349436231312032805483191278757": {
+      "slices": 310,
+      "parallel": true,
+      "uniform_spacing": true,
+      "slice_spacing": 1.0,
+      "max_spacing_deviation": 0.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.703125,
+       0.703125
+      ],
+      "thickness": "",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case10": {
+     "1.2.826.0.1.3680043.2.1125.1.22793969300205070895679804983639769": {
+      "slices": 233,
+      "parallel": true,
+      "uniform_spacing": true,
+      "slice_spacing": 1.0,
+      "max_spacing_deviation": 0.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.859375,
+       0.859375
+      ],
+      "thickness": "",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case11": {
+     "1.3.6.1.4.1.14519.5.2.1.6919.4624.102212264585598679920349005328": {
+      "slices": 103,
+      "parallel": true,
+      "uniform_spacing": true,
+      "slice_spacing": 4.0,
+      "max_spacing_deviation": 0.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.7421875,
+       0.7421875
+      ],
+      "thickness": "4",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case12": {
+     "1.3.6.1.4.1.14519.5.2.1.6919.4624.102552799280450622384605073116": {
+      "slices": 199,
+      "parallel": true,
+      "uniform_spacing": true,
+      "slice_spacing": 2.5,
+      "max_spacing_deviation": 0.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.789062,
+       0.789062
+      ],
+      "thickness": "2.500000",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case13": {
+     "1.3.6.1.4.1.14519.5.2.1.1357.4004.103276190658467650489011818099": {
+      "slices": 156,
+      "parallel": true,
+      "uniform_spacing": true,
+      "slice_spacing": 1.0,
+      "max_spacing_deviation": 0.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.673828005791,
+       0.673828005791
+      ],
+      "thickness": "2.500000",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case14": {
+     "1.3.6.1.4.1.14519.5.2.1.1357.4004.104852917160447273943989023229": {
+      "slices": 266,
+      "parallel": true,
+      "uniform_spacing": true,
+      "slice_spacing": 1.0,
+      "max_spacing_deviation": 0.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.78125,
+       0.78125
+      ],
+      "thickness": "2.50",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case15": {
+     "1.3.6.1.4.1.14519.5.2.1.1079.4008.114832936145958292789896133590": {
+      "slices": 104,
+      "parallel": true,
+      "uniform_spacing": true,
+      "slice_spacing": 2.0,
+      "max_spacing_deviation": 0.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.664062,
+       0.664062
+      ],
+      "thickness": "2.500000",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case16": {
+     "1.3.6.1.4.1.14519.5.2.1.1079.4008.125835242066069925860673799401": {
+      "slices": 106,
+      "parallel": true,
+      "uniform_spacing": true,
+      "slice_spacing": 2.0,
+      "max_spacing_deviation": 0.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.703125,
+       0.703125
+      ],
+      "thickness": "2.500000",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case17": {
+     "1.3.6.1.4.1.14519.5.2.1.1078.3273.100049836174285794186009730628": {
+      "slices": 111,
+      "parallel": true,
+      "uniform_spacing": true,
+      "slice_spacing": 2.0,
+      "max_spacing_deviation": 0.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.703125,
+       0.703125
+      ],
+      "thickness": "2.500000",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case18": {
+     "1.3.6.1.4.1.14519.5.2.1.1078.3273.100695794070451892455483306265": {
+      "slices": 365,
+      "parallel": true,
+      "uniform_spacing": true,
+      "slice_spacing": 0.625,
+      "max_spacing_deviation": 0.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.703125,
+       0.703125
+      ],
+      "thickness": "0.625000",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case19": {
+     "1.3.6.1.4.1.14519.5.2.1.1706.8374.102236702835548398521518585145": {
+      "slices": 206,
+      "parallel": true,
+      "uniform_spacing": false,
+      "slice_spacing": 0.0,
+      "max_spacing_deviation": 2.5,
+      "duplicates": 103,
+      "gaps": 102,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.976562,
+       0.976562
+      ],
+      "thickness": "2.500000",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    },
+    "case20": {
+     "1.3.6.1.4.1.14519.5.2.1.1706.8374.105856514843382488972278131607": {
+      "slices": 232,
+      "parallel": true,
+      "uniform_spacing": false,
+      "slice_spacing": 2.25,
+      "max_spacing_deviation": 2.0,
+      "duplicates": 0,
+      "gaps": 0,
+      "tilt_deg": 0.0,
+      "pixel_spacing": [
+       0.820312,
+       0.820312
+      ],
+      "thickness": "2.500000",
+      "matrix": [
+       512,
+       512
+      ]
+     }
+    }
+   }
+  },
+  "1c_read_dicom_volumes_sitk": {
+   "median_s": 8.013057699994533,
+   "times_s": [
+    7.959920500004955,
+    8.013057699994533,
+    8.054773600000772
+   ],
+   "first_s": 8.009124000003794,
+   "signature": {
+    "case01": -35858925555,
+    "case02": -33088695911,
+    "case03": -39086527556,
+    "case04": -35429903175,
+    "case05": -35655744970,
+    "case06": -54591482293,
+    "case07": -38350317597,
+    "case08": -43322658498,
+    "case09": -54034813301,
+    "case10": -36440394704,
+    "case11": -12026572419,
+    "case12": -39712509537,
+    "case13": -42012773817,
+    "case14": -41185318865,
+    "case15": -21276720719,
+    "case16": -27275368536,
+    "case17": -25063615422,
+    "case18": -89179932684,
+    "case19": -45145620553,
+    "case20": -42379670453
+   }
+  },
+  "1d_write_nrrd_raw": {
+   "median_s": 1.9101367999974173,
+   "times_s": [
+    1.924626400003035,
+    1.9047006000037072,
+    1.9101367999974173
+   ],
+   "first_s": 1.4848619999975199,
+   "signature": {
+    "bytes": 3012566897
+   }
+  },
+  "1d_write_nrrd_gzip": {
+   "median_s": 32.034051100003126,
+   "times_s": [
+    32.11108249999961,
+    31.972599699998682,
+    32.034051100003126
+   ],
+   "first_s": 32.09312890000001,
+   "signature": {
+    "bytes": 1229194137
+   }
+  },
+  "1e_write_nifti": {
+   "median_s": 1.053420999996888,
+   "times_s": [
+    1.054947100004938,
+    1.053420999996888,
+    1.0030897999968147
+   ],
+   "first_s": 0.7293610000051558,
+   "signature": {
+    "bytes": 2237143936
+   }
+  },
+  "1e_write_nifti_gz": {
+   "median_s": 27.22115109999868,
+   "times_s": [
+    27.18096869999863,
+    27.22115109999868,
+    27.252828700002283
+   ],
+   "first_s": 27.328648800001247,
+   "signature": {
+    "bytes": 1128629584
+   }
+  },
+  "1f_read_nrrd_raw": {
+   "median_s": 1.101329799996165,
+   "times_s": [
+    1.0901509000032092,
+    1.1102816999991774,
+    1.101329799996165
+   ],
+   "first_s": 1.2407738999972935,
+   "signature": {
+    "sum": -791117566565,
+    "expected": -791117566565
+   }
+  },
+  "1f_read_nrrd_gzip": {
+   "median_s": 10.560501599997224,
+   "times_s": [
+    10.566045899999153,
+    10.55421490000299,
+    10.560501599997224
+   ],
+   "first_s": 10.757222600004752,
+   "signature": {
+    "sum": -791117566565,
+    "expected": -791117566565
+   }
+  },
+  "1f_read_nifti_raw_dataobj": {
+   "median_s": 1.0443868000002112,
+   "times_s": [
+    1.0443868000002112,
+    1.060481799999252,
+    1.0410917999979574
+   ],
+   "first_s": 1.2112123999977484,
+   "signature": {
+    "sum": -791117566565,
+    "expected": -791117566565
+   }
+  },
+  "1f_read_nifti_gz_dataobj": {
+   "median_s": 8.262576099994476,
+   "times_s": [
+    8.258722099999432,
+    8.324962300001062,
+    8.262576099994476
+   ],
+   "first_s": 8.460613999995985,
+   "signature": {
+    "sum": -791117566565,
+    "expected": -791117566565
+   }
+  },
+  "1f_read_nifti_gz_fdata_float32": {
+   "median_s": 9.81381419999525,
+   "times_s": [
+    9.79526800000167,
+    9.86855800000194,
+    9.81381419999525
+   ],
+   "first_s": 9.839947399996163,
+   "signature": {
+    "sum": -791117566565,
+    "expected": -791117566565
+   }
+  }
+ },
+ "geometry_report": {
+  "case01": {
+   "1.2.826.0.1.3680043.2.1125.1.10349856497345767271749258522763940": {
+    "slices": 210,
+    "parallel": true,
+    "uniform_spacing": true,
+    "slice_spacing": 1.0,
+    "max_spacing_deviation": 0.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.8984375,
+     0.8984375
+    ],
+    "thickness": "",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case02": {
+   "1.2.826.0.1.3680043.2.1125.1.11965559194813068355935894731515844": {
+    "slices": 223,
+    "parallel": true,
+    "uniform_spacing": true,
+    "slice_spacing": 1.0,
+    "max_spacing_deviation": 0.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.95703125,
+     0.95703125
+    ],
+    "thickness": "",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case03": {
+   "1.2.826.0.1.3680043.2.1125.1.12520952175517515323332680058523170": {
+    "slices": 221,
+    "parallel": true,
+    "uniform_spacing": true,
+    "slice_spacing": 1.0,
+    "max_spacing_deviation": 0.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.9765625,
+     0.9765625
+    ],
+    "thickness": "",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case04": {
+   "1.2.826.0.1.3680043.2.1125.1.1543700067293409822950367187567394": {
+    "slices": 223,
+    "parallel": true,
+    "uniform_spacing": true,
+    "slice_spacing": 1.0,
+    "max_spacing_deviation": 0.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.9375,
+     0.9375
+    ],
+    "thickness": "",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case05": {
+   "1.2.826.0.1.3680043.2.1125.1.15635466603075487888021721620900167": {
+    "slices": 233,
+    "parallel": true,
+    "uniform_spacing": true,
+    "slice_spacing": 1.0,
+    "max_spacing_deviation": 0.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.9765625,
+     0.9765625
+    ],
+    "thickness": "",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case06": {
+   "1.2.826.0.1.3680043.2.1125.1.16201530826403193098603729357912354": {
+    "slices": 310,
+    "parallel": true,
+    "uniform_spacing": true,
+    "slice_spacing": 1.0,
+    "max_spacing_deviation": 0.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.703125,
+     0.703125
+    ],
+    "thickness": "",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case07": {
+   "1.2.826.0.1.3680043.2.1125.1.17933634158214814504206233487222230": {
+    "slices": 247,
+    "parallel": true,
+    "uniform_spacing": true,
+    "slice_spacing": 1.0,
+    "max_spacing_deviation": 0.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.78125,
+     0.78125
+    ],
+    "thickness": "",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case08": {
+   "1.2.826.0.1.3680043.2.1125.1.20717257972694535177379269529037728": {
+    "slices": 209,
+    "parallel": true,
+    "uniform_spacing": true,
+    "slice_spacing": 1.0,
+    "max_spacing_deviation": 0.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.9765625,
+     0.9765625
+    ],
+    "thickness": "",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case09": {
+   "1.2.826.0.1.3680043.2.1125.1.2278349436231312032805483191278757": {
+    "slices": 310,
+    "parallel": true,
+    "uniform_spacing": true,
+    "slice_spacing": 1.0,
+    "max_spacing_deviation": 0.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.703125,
+     0.703125
+    ],
+    "thickness": "",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case10": {
+   "1.2.826.0.1.3680043.2.1125.1.22793969300205070895679804983639769": {
+    "slices": 233,
+    "parallel": true,
+    "uniform_spacing": true,
+    "slice_spacing": 1.0,
+    "max_spacing_deviation": 0.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.859375,
+     0.859375
+    ],
+    "thickness": "",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case11": {
+   "1.3.6.1.4.1.14519.5.2.1.6919.4624.102212264585598679920349005328": {
+    "slices": 103,
+    "parallel": true,
+    "uniform_spacing": true,
+    "slice_spacing": 4.0,
+    "max_spacing_deviation": 0.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.7421875,
+     0.7421875
+    ],
+    "thickness": "4",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case12": {
+   "1.3.6.1.4.1.14519.5.2.1.6919.4624.102552799280450622384605073116": {
+    "slices": 199,
+    "parallel": true,
+    "uniform_spacing": true,
+    "slice_spacing": 2.5,
+    "max_spacing_deviation": 0.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.789062,
+     0.789062
+    ],
+    "thickness": "2.500000",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case13": {
+   "1.3.6.1.4.1.14519.5.2.1.1357.4004.103276190658467650489011818099": {
+    "slices": 156,
+    "parallel": true,
+    "uniform_spacing": true,
+    "slice_spacing": 1.0,
+    "max_spacing_deviation": 0.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.673828005791,
+     0.673828005791
+    ],
+    "thickness": "2.500000",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case14": {
+   "1.3.6.1.4.1.14519.5.2.1.1357.4004.104852917160447273943989023229": {
+    "slices": 266,
+    "parallel": true,
+    "uniform_spacing": true,
+    "slice_spacing": 1.0,
+    "max_spacing_deviation": 0.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.78125,
+     0.78125
+    ],
+    "thickness": "2.50",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case15": {
+   "1.3.6.1.4.1.14519.5.2.1.1079.4008.114832936145958292789896133590": {
+    "slices": 104,
+    "parallel": true,
+    "uniform_spacing": true,
+    "slice_spacing": 2.0,
+    "max_spacing_deviation": 0.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.664062,
+     0.664062
+    ],
+    "thickness": "2.500000",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case16": {
+   "1.3.6.1.4.1.14519.5.2.1.1079.4008.125835242066069925860673799401": {
+    "slices": 106,
+    "parallel": true,
+    "uniform_spacing": true,
+    "slice_spacing": 2.0,
+    "max_spacing_deviation": 0.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.703125,
+     0.703125
+    ],
+    "thickness": "2.500000",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case17": {
+   "1.3.6.1.4.1.14519.5.2.1.1078.3273.100049836174285794186009730628": {
+    "slices": 111,
+    "parallel": true,
+    "uniform_spacing": true,
+    "slice_spacing": 2.0,
+    "max_spacing_deviation": 0.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.703125,
+     0.703125
+    ],
+    "thickness": "2.500000",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case18": {
+   "1.3.6.1.4.1.14519.5.2.1.1078.3273.100695794070451892455483306265": {
+    "slices": 365,
+    "parallel": true,
+    "uniform_spacing": true,
+    "slice_spacing": 0.625,
+    "max_spacing_deviation": 0.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.703125,
+     0.703125
+    ],
+    "thickness": "0.625000",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case19": {
+   "1.3.6.1.4.1.14519.5.2.1.1706.8374.102236702835548398521518585145": {
+    "slices": 206,
+    "parallel": true,
+    "uniform_spacing": false,
+    "slice_spacing": 0.0,
+    "max_spacing_deviation": 2.5,
+    "duplicates": 103,
+    "gaps": 102,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.976562,
+     0.976562
+    ],
+    "thickness": "2.500000",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  },
+  "case20": {
+   "1.3.6.1.4.1.14519.5.2.1.1706.8374.105856514843382488972278131607": {
+    "slices": 232,
+    "parallel": true,
+    "uniform_spacing": false,
+    "slice_spacing": 2.25,
+    "max_spacing_deviation": 2.0,
+    "duplicates": 0,
+    "gaps": 0,
+    "tilt_deg": 0.0,
+    "pixel_spacing": [
+     0.820312,
+     0.820312
+    ],
+    "thickness": "2.500000",
+    "matrix": [
+     512,
+     512
+    ]
+   }
+  }
+ },
+ "cases": [
+  "case01",
+  "case02",
+  "case03",
+  "case04",
+  "case05",
+  "case06",
+  "case07",
+  "case08",
+  "case09",
+  "case10",
+  "case11",
+  "case12",
+  "case13",
+  "case14",
+  "case15",
+  "case16",
+  "case17",
+  "case18",
+  "case19",
+  "case20"
+ ],
+ "section_wall_time_s": 442.81817740000406,
+ "start_epoch": 1795518558.8394387,
+ "end_epoch": 1795519001.6580489,
+ "library_threads": {
+  "SimpleITK": 12
+ },
+ "foreign_load": {
+  "mean": 1.6,
+  "max": 5.8,
+  "samples": 82
+ }
+}

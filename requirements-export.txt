@@ -1,0 +1,5 @@
+# Added to the tools environment only when the ONNX model has to be exported (scripts/export_onnx.py).
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.15.0+cpu
+monai==1.6.2
+scipy==1.18.1

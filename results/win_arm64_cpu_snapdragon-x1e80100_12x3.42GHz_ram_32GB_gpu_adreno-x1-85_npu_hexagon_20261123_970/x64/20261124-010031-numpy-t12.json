@@ -1,0 +1,487 @@
+{
+ "section": "numpy",
+ "threads": 12,
+ "repeats": 3,
+ "warmup": 1,
+ "timestamp": "2026-11-24T01:00:31",
+ "environment": {
+  "env": "x64",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "executable": "<repo>/.envs/x64/Scripts/python.exe",
+  "python_platform": "win-amd64",
+  "machine": "ARM64",
+  "windows": "10.0.26300",
+  "cpu": "Snapdragon(R) X 12-core X1E80100 @ 3.40 GHz",
+  "logical_cpus": 12,
+  "memory_gb": 31.6,
+  "packages": {
+   "numpy": "2.5.5",
+   "scipy": "1.18.1",
+   "simpleitk": "2.5.5",
+   "vtk": "9.7.2",
+   "pynrrd": "1.1.4",
+   "nibabel": "5.5.0",
+   "pydicom": "3.0.2",
+   "torch": "2.15.0+cpu",
+   "monai": "1.6.2",
+   "TotalSegmentator": "2.18.0",
+   "nnunetv2": "2.8.1",
+   "scikit-image": "0.26.0",
+   "connected-components-3d": "4.1.1"
+  },
+  "python_exe_arch": "x64",
+  "python_dll_arch": "x64"
+ },
+ "loaded_modules": {
+  "summary": {
+   "x64": 60,
+   "arm64x": 1
+  },
+  "modules": {
+   "<python>/DLLs/_bz2.pyd": "x64",
+   "<python>/DLLs/_ctypes.pyd": "x64",
+   "<python>/DLLs/_decimal.pyd": "x64",
+   "<python>/DLLs/_hashlib.pyd": "x64",
+   "<python>/DLLs/_lzma.pyd": "x64",
+   "<python>/DLLs/_queue.pyd": "x64",
+   "<python>/DLLs/_socket.pyd": "x64",
+   "<python>/DLLs/_uuid.pyd": "x64",
+   "<python>/DLLs/_wmi.pyd": "x64",
+   "<python>/DLLs/libcrypto-3.dll": "x64",
+   "<python>/DLLs/libffi-8.dll": "x64",
+   "<python>/DLLs/select.pyd": "x64",
+   "<python>/DLLs/unicodedata.pyd": "x64",
+   "<python>/python.exe": "x64",
+   "<python>/python3.dll": "x64",
+   "<python>/python312.dll": "x64",
+   "<python>/vcruntime140.dll": "x64",
+   "<python>/vcruntime140_1.dll": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/charset_normalizer/cd.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/charset_normalizer/md.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy.libs/libscipy_openblas64_-4e39871015dc1470c682dc512497ee22.dll": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy.libs/msvcp140-a4c2229bdc2a2a630acdc095b4d86008.dll": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/_core/_multiarray_umath.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/fft/_pocketfft_umath.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/linalg/_umath_linalg.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/random/_bounded_integers.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/random/_common.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/random/_generator.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/random/_mt19937.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/random/_pcg64.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/random/_philox.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/random/_sfc64.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/random/bit_generator.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/random/mtrand.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/psutil/_psutil_windows.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy.libs/libscipy_openblas-197ee2fc9b4d071f7e048078cac74115.dll": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/_cyutility.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/_lib/_ccallback_c.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/_lib/_uarray/_uarray.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/fft/_duccfft/pyduccfft.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/_batched_linalg.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/_cythonized_array_utils.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/_decomp_update.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/_fblas.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/_flapack.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/_internal_matfuncs.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/_linalg_pythran.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/_solve_toeplitz.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/cython_blas.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/cython_lapack.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/ndimage/_nd_image.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/ndimage/_ni_label.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/ndimage/_rank_filter_1d.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/special/_comb.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/special/_ellip_harm_2.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/special/_gufuncs.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/special/_specfun.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/special/_special_ufuncs.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/special/_ufuncs.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/special/_ufuncs_cxx.cp312-win_amd64.pyd": "x64",
+   "<programdata>/Microsoft/Windows Defender/Platform/4.18.26100.4-0/MpOAV.dll": "arm64x"
+  }
+ },
+ "tasks": {
+  "2a_window_level_uint8": {
+   "median_s": 1.996343999999226,
+   "times_s": [
+    2.064871399998083,
+    1.92866629999844,
+    1.996343999999226
+   ],
+   "first_s": 2.0689880999998422,
+   "signature": {
+    "case01": 1980970513,
+    "case06": 3285520004,
+    "case11": 1427928002,
+    "case14": 2593020258,
+    "case18": 5148805808
+   }
+  },
+  "2a_zscore_clip_float32": {
+   "median_s": 2.0140286999994714,
+   "times_s": [
+    2.0140286999994714,
+    1.948239300003479,
+    2.0359128000018245
+   ],
+   "first_s": 1.9939588999986881,
+   "signature": {
+    "case01": 50630000.0,
+    "case06": 72720000.0,
+    "case11": 26170000.0,
+    "case14": 66340000.0,
+    "case18": 75320000.0
+   }
+  },
+  "2a_elementwise_synthetic_512cubed": {
+   "median_s": 2.7981510999998136,
+   "times_s": [
+    2.7994460000008985,
+    2.7952758999999787,
+    2.7981510999998136
+   ],
+   "first_s": 2.734454999997979,
+   "signature": {
+    "sum": 298200000.0
+   }
+  },
+  "2b_histogram": {
+   "median_s": 3.0904798000010487,
+   "times_s": [
+    3.8001584999983606,
+    2.9110030999981973,
+    3.0904798000010487
+   ],
+   "first_s": 3.582943900000828,
+   "signature": {
+    "case01": 0,
+    "case06": 0,
+    "case11": 1,
+    "case14": 1,
+    "case18": 1
+   }
+  },
+  "2b_percentiles": {
+   "median_s": 1.7328845000010915,
+   "times_s": [
+    1.7617191999997885,
+    1.7328845000010915,
+    1.7245457000026363
+   ],
+   "first_s": 1.7591972999980499,
+   "signature": {
+    "case01": [
+     -1024.0,
+     -952.0,
+     239.0
+    ],
+    "case06": [
+     -1024.0,
+     -987.0,
+     309.0
+    ],
+    "case11": [
+     -1024.0,
+     -117.0,
+     376.0
+    ],
+    "case14": [
+     -1024.0,
+     -947.0,
+     302.0
+    ],
+    "case18": [
+     -3024.0,
+     -795.0,
+     384.0
+    ]
+   }
+  },
+  "2b_unique": {
+   "median_s": 1.9740664999990258,
+   "times_s": [
+    1.9740664999990258,
+    1.9610877000013716,
+    1.988031900000351
+   ],
+   "first_s": 1.9755389000019932,
+   "signature": {
+    "case01": 25,
+    "case06": 26,
+    "case11": 42,
+    "case14": 27,
+    "case18": 43
+   }
+  },
+  "2c_gaussian_filter": {
+   "median_s": 23.108043599997472,
+   "times_s": [
+    22.834576900000684,
+    23.108043599997472,
+    23.499597999998514
+   ],
+   "first_s": 22.78698859999713,
+   "signature": {
+    "case01": -35860000000.0,
+    "case06": -54590000000.0,
+    "case11": -12030000000.0,
+    "case14": -41190000000.0,
+    "case18": -89180000000.0
+   }
+  },
+  "2c_median_filter_crop": {
+   "median_s": 20.314622699999745,
+   "times_s": [
+    20.308521299997665,
+    20.397960299997067,
+    20.314622699999745
+   ],
+   "first_s": 20.296677099999215,
+   "signature": {
+    "case01": -1921000000.0,
+    "case06": -875600000.0,
+    "case11": -207100000.0,
+    "case14": -973500000.0,
+    "case18": -916100000.0
+   }
+  },
+  "2c_binary_dilate_erode": {
+   "median_s": 5.873908000001393,
+   "times_s": [
+    5.873908000001393,
+    5.898351600000751,
+    5.8665148000000045
+   ],
+   "first_s": 5.888055700001132,
+   "signature": {
+    "case01": 17157477,
+    "case06": 23869167,
+    "case11": 13540130,
+    "case14": 25806687,
+    "case18": 44527832
+   }
+  },
+  "2d_label_largest_component_edt": {
+   "median_s": 19.580954900000506,
+   "times_s": [
+    19.50407699999778,
+    19.580954900000506,
+    20.082458300003054
+   ],
+   "first_s": 19.797038299999258,
+   "signature": {
+    "case01": [
+     689,
+     70.39
+    ],
+    "case06": [
+     258,
+     97.97
+    ],
+    "case11": [
+     214,
+     112.0
+    ],
+    "case14": [
+     463,
+     89.43
+    ],
+    "case18": [
+     2929,
+     101.2
+    ]
+   }
+  },
+  "2e_zoom_isotropic_1.5mm": {
+   "median_s": 2.2400792999978876,
+   "times_s": [
+    2.2398541000002297,
+    2.280233600002248,
+    2.2400792999978876
+   ],
+   "first_s": 2.277638300001854,
+   "signature": {
+    "case01": [
+     140,
+     307,
+     307
+    ],
+    "case06": [
+     207,
+     240,
+     240
+    ],
+    "case11": [
+     275,
+     253,
+     253
+    ],
+    "case14": [
+     177,
+     267,
+     267
+    ],
+    "case18": [
+     152,
+     240,
+     240
+    ]
+   }
+  },
+  "2e_affine_rotation": {
+   "median_s": 18.052898199999618,
+   "times_s": [
+    17.976925899998605,
+    18.052898199999618,
+    18.059349199997087
+   ],
+   "first_s": 18.006838600002084,
+   "signature": {
+    "case01": -652.1,
+    "case06": -671.8,
+    "case11": -452.4,
+    "case14": -596.1,
+    "case18": -781.9
+   }
+  },
+  "2f_pca_bone_points_svd": {
+   "median_s": 1.2463387999996485,
+   "times_s": [
+    1.243928899999446,
+    1.2463387999996485,
+    1.2698526000021957
+   ],
+   "first_s": 1.251042599997163,
+   "signature": {
+    "case01": [
+     50500.0,
+     48950.0,
+     38270.0
+    ],
+    "case06": [
+     96200.0,
+     70160.0,
+     52830.0
+    ],
+    "case11": [
+     78150.0,
+     51960.0,
+     21740.0
+    ],
+    "case14": [
+     88610.0,
+     68550.0,
+     49590.0
+    ],
+    "case18": [
+     117100.0,
+     88720.0,
+     81020.0
+    ]
+   }
+  },
+  "2f_svd_2000": {
+   "median_s": 1.4303121999982977,
+   "times_s": [
+    1.4273950999995577,
+    1.4303121999982977,
+    1.4524875999995857
+   ],
+   "first_s": 1.495444399999542,
+   "signature": {
+    "smax": 89.11,
+    "smin": 0.00457
+   }
+  },
+  "2f_matmul_2000": {
+   "median_s": 0.04199739999967278,
+   "times_s": [
+    0.04213570000138134,
+    0.041775999998208135,
+    0.04199739999967278
+   ],
+   "first_s": 0.058898999999655643,
+   "signature": {
+    "trace": 3999000.0
+   }
+  },
+  "2f_landmark_fit_lstsq_kabsch": {
+   "median_s": 0.025091400002565933,
+   "times_s": [
+    0.025561399997968692,
+    0.024711800000659423,
+    0.025091400002565933
+   ],
+   "first_s": 0.028648200001043733,
+   "signature": {
+    "affine00": 0.98,
+    "rot_det": 1.0
+   }
+  },
+  "2f_eigh_batch_3x3": {
+   "median_s": 1.3642577999999048,
+   "times_s": [
+    1.3609774999968067,
+    1.3745077999992645,
+    1.3642577999999048
+   ],
+   "first_s": 1.3847536000030232,
+   "signature": {
+    "mean_max_eig": 6.73
+   }
+  },
+  "2g_fft_phase_correlation": {
+   "median_s": 1.4751160999985586,
+   "times_s": [
+    1.4751160999985586,
+    1.4945127999999386,
+    1.4640032999996038
+   ],
+   "first_s": 1.428907599998638,
+   "signature": {
+    "case01": [
+     5,
+     -3,
+     7
+    ],
+    "case06": [
+     5,
+     -3,
+     7
+    ],
+    "case11": [
+     5,
+     -3,
+     7
+    ],
+    "case14": [
+     5,
+     -3,
+     7
+    ],
+    "case18": [
+     5,
+     -3,
+     7
+    ]
+   }
+  }
+ },
+ "cases": [
+  "case01",
+  "case06",
+  "case11",
+  "case14",
+  "case18"
+ ],
+ "section_wall_time_s": 437.75984550000067,
+ "start_epoch": 1795499593.953084,
+ "end_epoch": 1795500031.6992936,
+ "library_threads": {},
+ "foreign_load": {
+  "mean": 1.1,
+  "max": 3.7,
+  "samples": 82
+ }
+}

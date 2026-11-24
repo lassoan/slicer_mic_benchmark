@@ -1,0 +1,13 @@
+# Benchmark results
+
+One folder per benchmark run: `<computer id>_<date>_<time of day as 000-999>`. Machine-readable data:
+
+- [all.csv](all.csv): every task of every run, one row per task, environment and thread count (columns: run, computer_id, cpu, os, timestamp, env, python_arch, section, threads, task, median_s, min_s, max_s, first_s, repeats, foreign_load_mean, foreign_load_max)
+- `<run>/tasks.csv`: the same for one run; `<run>/<env>/*.json`: raw results with full metadata; `<run>/summary.json`: per-task times and speed-ups, output checks
+
+Speed-up = geometric mean over the non-AI tasks of time in x64 / time in the environment (x64 is emulated on ARM64 computers).
+
+| Date | Computer | Environments | Speed-up vs x64 | Run |
+| --- | --- | --- | --- | --- |
+| 2026-11-23 | Snapdragon(R) X 12-core X1E80100 @ 3.40 GHz, 12 logical CPUs, 31.6 GB RAM, Windows 10.0.26300 | x64, arm64ec, arm64 | arm64ec 1.04×, arm64 1.34× | [summary](win_arm64_cpu_snapdragon-x1e80100_12x3.42GHz_ram_32GB_gpu_adreno-x1-85_npu_hexagon_20261123_970/summary.md), [csv](win_arm64_cpu_snapdragon-x1e80100_12x3.42GHz_ram_32GB_gpu_adreno-x1-85_npu_hexagon_20261123_970/tasks.csv) |
+| 2026-11-23 | Snapdragon(R) X 12-core X1E80100 @ 3.40 GHz, 12 logical CPUs, 31.6 GB RAM, Windows 10.0.26300 | x64, arm64ec, arm64 | arm64ec 1.02×, arm64 1.32× | [summary](win_arm64_cpu_snapdragon-x1e80100_12x3.42GHz_ram_32GB_gpu_adreno-x1-85_npu_hexagon_20261123_754/summary.md), [csv](win_arm64_cpu_snapdragon-x1e80100_12x3.42GHz_ram_32GB_gpu_adreno-x1-85_npu_hexagon_20261123_754/tasks.csv) |

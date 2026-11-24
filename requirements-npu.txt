@@ -1,0 +1,6 @@
+# arm64 environment only: ONNX Runtime QNN execution provider plugin (Qualcomm Hexagon NPU) and its dependencies.
+# Installed with --no-deps after requirements.lock (which has onnxruntime).
+onnxruntime-qnn==2.8.0
+coloredlogs==15.0.1
+humanfriendly==10.0
+pyreadline3==3.5.6

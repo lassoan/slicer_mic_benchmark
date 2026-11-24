@@ -1,0 +1,11 @@
+# Helper environment (.envs/tools, x64 CPython): test data download, CPU load monitoring, result summaries and
+# reports, fixed-shape ONNX model. Not benchmarked. Dependencies of these packages are resolved by pip.
+idc-index==0.13.5
+psutil==7.2.2
+Markdown==3.11.3
+numpy==2.5.5
+pillow==13.0.0
+nibabel==5.5.0
+pynrrd==1.1.4
+onnx==1.23.2
+onnxruntime==1.32.0
