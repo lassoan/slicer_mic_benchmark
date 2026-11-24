@@ -352,9 +352,15 @@ def main():
     md.append("")
 
     md += ["## Key findings", "", auto_findings(summary, head, envs, others, emulated, extra, backends), ""]
-    notes = out / "findings.md"
-    if notes.exists():
-        md += ["### Notes", "", notes.read_text(encoding="utf-8").strip(), ""]
+    # hand-written analysis: <results folder>/findings.md (published), or <report folder>/findings.md (local)
+    notes = next((f for f in (resdir / "findings.md", out / "findings.md") if f.exists()), None)
+    if notes:
+        lines = notes.read_text(encoding="utf-8").strip().splitlines()
+        if lines and lines[0].startswith("# "):  # its own title; the report has one
+            lines = lines[1:]
+        # nest its headings under "### Notes"
+        lines = ["##" + ln if ln.startswith("#") else ln for ln in lines]
+        md += ["### Notes", "", "\n".join(lines).strip(), ""]
 
     md += ["## Time per section", "",
            "Sum of the task times (medians, seconds) in each section; lower is better.", "",
