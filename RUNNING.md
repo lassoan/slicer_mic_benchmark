@@ -111,6 +111,7 @@ results at the end of `report` and in the GitHub workflow. Results written befor
 | `--replicate DIR` | | results of an earlier run, compared in the report |
 | `--cooldown 60` | 60 | seconds of rest before each run |
 | `--idle 30` | 30 | seconds of idle CPU, ignoring the benchmark, required before each run |
+| `--idle-load 6` | 6 | CPU load of other processes (% of the machine) below which the CPU counts as idle; raise it on a computer whose background load never drops below 6% |
 | `--repeats N` | per section | timed repeats per task |
 | `--tasks 2a,3e` | all tasks | task groups |
 | `--no-rerun` | off | don't repeat runs that overlapped load from other processes |

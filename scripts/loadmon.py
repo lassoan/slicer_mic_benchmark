@@ -1,7 +1,9 @@
 """Background CPU load from processes that are not part of the benchmark.
 
   python scripts/loadmon.py log <file>      sample every 5 s, append "epoch total% foreign% top-foreign-processes"
-  python scripts/loadmon.py wait [secs]     return when foreign load < 6% of the machine for <secs> (default 30) s
+  python scripts/loadmon.py wait [secs] [limit]
+                                            return when foreign load < <limit>% (default 6) of the machine for
+                                            <secs> (default 30) s
 
 "Foreign" = all processes except benchmark runs (bench.run, bench.startup, bench.extra_checks), the driver
 (benchmark.py) and this monitor, and their children. Percentages are of the whole machine (all logical CPUs = 100%).
@@ -68,10 +70,11 @@ def main():
                 f.write(f"{time.time():.0f} {total:.1f} {fl:.1f} " + ",".join(f"{n}:{c:.1f}" for c, n in top) + "\n")
     elif mode == "wait":
         need = float(sys.argv[2]) if len(sys.argv) > 2 else 30
+        limit = float(sys.argv[3]) if len(sys.argv) > 3 else 6.0
         quiet_since = time.time()
         while True:
             _, fl, top = sample(5)
-            if fl >= 6.0:
+            if fl >= limit:
                 quiet_since = time.time()
                 print(f"waiting: foreign load {fl:.1f}% {top}", flush=True)
             elif time.time() - quiet_since >= need:
