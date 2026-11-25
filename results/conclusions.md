@@ -6,6 +6,8 @@ The main results across all computers. The evidence, exact numbers and caveats a
   (ARM64, 2026-11-23)
 - [Core i7-12700H laptop with RTX 3080 Ti](win_x64_cpu_i7-12700h_14x2.30GHz_ram_32GB_gpu_rtx-3080-ti-laptop+iris-xe_20261124_563/findings.md)
   (x64, 2026-11-24)
+- [Core i7-8700 desktop with RTX 3060](win_x64_cpu_i7-8700_6x3.19GHz_ram_32GB_gpu_rtx-3060+uhd-630_20261124_564/findings.md)
+  (x64, 2026-11-24)
 
 Every run is listed in [README.md](README.md).
 
@@ -25,19 +27,27 @@ Measured on the Snapdragon X Elite.
 
 - **On x64 code, PyTorch is faster than ONNX Runtime for the MONAI network.**
   - Core i7-12700H: ONNX Runtime is 1.33–1.45× slower per case.
+  - Core i7-8700: about the same speed, 0.95–1.05× of the PyTorch time per case.
   - Snapdragon, x64 under emulation: ONNX Runtime is also slower than PyTorch.
 - **On native arm64, it is the other way round:** ONNX Runtime is 7–8× faster than PyTorch.
 
 ## Threads
 
-- **The C++ libraries (ITK, VTK) use the threads well.** On the Core i7-12700H, section 3 is 4.3× faster with
-  20 threads than with 1.
-- **Most numpy/scipy code runs on one thread.** On the Core i7-12700H, section 2 takes the same time with 1 and
-  20 threads. Only the BLAS tasks (matrix multiply, SVD) gain.
-- **BLAS stops scaling early.** A 2000×2000 SVD gets no faster beyond 4 threads with the arm64 OpenBLAS
-  (Snapdragon). On the Core i7-12700H, it is fastest with 4–8 threads and slower again with 20.
+- **The C++ libraries (ITK, VTK) use the threads well.** Section 3 is 4.3× faster with 20 threads than with 1
+  on the Core i7-12700H, and 3.5× faster with 12 threads on the Core i7-8700.
+- **Most numpy/scipy code runs on one thread.** Section 2 takes the same time with 1 thread as with all threads
+  on both x64 computers. Only the BLAS tasks (matrix multiply, SVD) gain.
+- **BLAS stops scaling early.** A 2000×2000 SVD:
+  - Snapdragon (arm64 OpenBLAS): no faster beyond 4 threads.
+  - Core i7-12700H: fastest with 4–8 threads, slower again with 20.
+  - Core i7-8700: fastest with 4 threads (2.365 s). With 12 threads it is slower than with 1 (4.16 s against
+    3.782 s).
+  - Don't use all hardware threads for BLAS.
 
 ## File I/O
 
 - **gzip dominates the time of writing compressed files.** On the Core i7-12700H: 36.0 s for a gzip NRRD,
   against 2.6 s raw.
+  - On the Core i7-8700, even raw writing is slow: 17.3 s for a raw NRRD and 50.0 s gzip. This is probably
+    because of its older SATA SSD.
+- **pydicom reads DICOM headers faster than SimpleITK:** 3.5× on the Core i7-12700H, 4.2× on the Core i7-8700.
