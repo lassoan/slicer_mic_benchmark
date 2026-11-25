@@ -11,7 +11,7 @@ On an ARM64 computer, the same Python version, CPython 3.12.10, runs in up to th
 | Environment | Interpreter | Extension modules (wheels) | What runs emulated |
 | --- | --- | --- | --- |
 | `x64` | python.org CPython amd64 (NuGet package `python`) | `win_amd64` | everything (Prism emulation) |
-| `arm64ec` | ARM64EC CPython, a local build with python-cmake-buildsystem (optional) | `win_amd64`, the same files as `x64` | extension modules only; the interpreter is native |
+| `arm64ec` | ARM64EC CPython, a local build ([how to build](#building-the-arm64ec-python); optional) | `win_amd64`, the same files as `x64` | extension modules only; the interpreter is native |
 | `arm64` | python.org CPython arm64 (NuGet package `pythonarm64`) | `win_arm64`, built from source where PyPI has none | nothing |
 
 - **Comparisons:**
@@ -20,6 +20,53 @@ On an ARM64 computer, the same Python version, CPython 3.12.10, runs in up to th
   - Comparing `arm64ec` with `arm64` shows how much emulated extension modules cost.
 - **Intel/AMD computers** run `x64` only, natively, and the report shows absolute times.
 - **ARM64EC:** the ARM64EC interpreter reports itself as `win-amd64`, so pip installs the x64 wheels.
+
+### Building the ARM64EC Python
+
+There is no official ARM64EC build of CPython. The `arm64ec` environment uses CPython 3.12.10 built with
+[python-cmake-buildsystem](https://github.com/python-cmake-buildsystem/python-cmake-buildsystem), which supports
+ARM64EC for Python 3.12 (CMake option `-A ARM64EC`).
+
+- **Requirements:** a Windows ARM64 computer, Visual Studio with the MSVC ARM64EC build tools (an individual
+  component in the Visual Studio Installer), CMake and git. The interpreter in the published results was built
+  with Visual Studio 2026 (MSVC 19.51).
+- **Libraries linked into Python must be ARM64EC or x64:**
+  - libffi (needed by `ctypes`): use an x64 build, because libffi has no ARM64EC support.
+  - OpenSSL (needed by `ssl` and `hashlib`, so by pip): OpenSSL has no ARM64EC target, but its x64 target
+    without assembly code builds as ARM64EC. In an "ARM64" Visual Studio command prompt:
+
+    ```bat
+    set CL=/arm64EC
+    perl Configure VC-WIN64A no-asm no-uplink "ARFLAGS=/nologo /MACHINE:ARM64EC"
+    nmake
+    nmake install
+    ```
+
+  - zlib, bzip2, xz and sqlite: build them with CMake and `-A ARM64EC`, or use x64 builds.
+- **Build and install Python:**
+
+  ```bat
+  git clone https://github.com/python-cmake-buildsystem/python-cmake-buildsystem
+  mkdir python-build
+  cd python-build
+  cmake -G "Visual Studio 18 2026" -A ARM64EC -DPYTHON_VERSION=3.12.10 ^
+    -DCMAKE_INSTALL_PREFIX:PATH=<install dir> ^
+    -DOPENSSL_ROOT_DIR=<OpenSSL install> -DZLIB_ROOT=<zlib install> ^
+    -DLibFFI_LIBRARY=<x64 libffi .lib> -DLibFFI_INCLUDE_DIR=<libffi include> ^
+    ../python-cmake-buildsystem
+  cmake --build . --config Release -- /m
+  cmake --build . --config Release --target INSTALL
+  ```
+
+  The project's README lists the other options, for example for bzip2, xz and sqlite.
+- **Use it:** pass `<install dir>/bin/python.exe` with `--arm64ec-python`
+  ([RUNNING.md](RUNNING.md#arm64-computers-the-optional-arm64ec-environment)).
+- **Check it:** `sysconfig.get_platform()` must return `win-amd64`. The benchmark records the architecture of
+  `python.exe` and `python312.dll` in every result (`python_exe_arch`, `python_dll_arch`), which must be `arm64ec`.
+- **zlib affects the gzip results.** The interpreter in the published results links zlib-ng 1.3.1 (`zlib.ZLIB_VERSION`
+  is `1.3.1.zlib-ng`). At level 1, it compresses faster but makes larger files than the zlib of the python.org
+  builds, which shows in the gzip tasks of section 1 and in the zlib extra check. Link the standard zlib to avoid
+  this difference.
 
 ## Rules for comparable results
 
