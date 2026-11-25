@@ -14,7 +14,8 @@ Environments (chosen automatically from the processor architecture; override wit
   arm64     python.org CPython ARM64 + win_arm64 wheels (ARM64 only; some wheels are built locally, see README)
   arm64ec   ARM64EC CPython build + win_amd64 wheels (ARM64 only, optional: --arm64ec-python or ARM64EC_PYTHON)
 
-Run options: --sections, --envs, --threads, --results, --cooldown, --idle, --repeats, --tasks, --no-rerun.
+Run options: --sections, --envs, --threads, --results, --cooldown, --idle, --idle-load, --repeats, --tasks,
+--no-rerun.
 See README.md.
 """
 
@@ -356,7 +357,7 @@ def cmd_run(args):
 
     def one(env, section, t):
         time.sleep(args.cooldown)
-        run([tools_python(), "scripts/loadmon.py", "wait", args.idle], logfile, check=False)
+        run([tools_python(), "scripts/loadmon.py", "wait", args.idle, args.idle_load], logfile, check=False)
         log(f"{env} {section} threads={t}", logfile)
         cmd = [env_python(env), "-m", "bench.run", section, "--env", env, "--threads", t]
         if args.repeats is not None:
@@ -370,7 +371,8 @@ def cmd_run(args):
     try:
         for section in sections:
             if section == "startup":
-                run([tools_python(), "scripts/loadmon.py", "wait", args.idle], logfile, check=False)
+                run([tools_python(), "scripts/loadmon.py", "wait", args.idle, args.idle_load], logfile,
+                    check=False)
                 log("startup", logfile)
                 run([tools_python(), "-m", "bench.startup", *envs], logfile, check=False, env=benv)
                 continue
@@ -437,6 +439,8 @@ def main():
     p.add_argument("--cooldown", type=int, default=60, help="seconds of rest before each run (default: 60)")
     p.add_argument("--idle", type=int, default=30, help="seconds without load from other processes required "
                    "before each run (default: 30)")
+    p.add_argument("--idle-load", type=float, default=6.0, help="CPU load of other processes (%% of the machine) "
+                   "below which the computer counts as idle before each run (default: 6)")
     p.add_argument("--repeats", type=int, help="timed repeats per task (default: per section)")
     p.add_argument("--tasks", help="comma-separated task groups, e.g. 2a,3e (default: all tasks)")
     p.add_argument("--no-rerun", action="store_true", help="do not repeat runs that overlapped other CPU load")
