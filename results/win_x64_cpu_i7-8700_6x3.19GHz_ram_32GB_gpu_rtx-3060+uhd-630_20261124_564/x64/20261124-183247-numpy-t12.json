@@ -1,0 +1,584 @@
+{
+ "section": "numpy",
+ "threads": 12,
+ "repeats": 3,
+ "warmup": 1,
+ "timestamp": "2026-11-24T18:32:47",
+ "environment": {
+  "env": "x64",
+  "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]",
+  "executable": "<repo>/.envs/x64/Scripts/python.exe",
+  "python_platform": "win-amd64",
+  "machine": "AMD64",
+  "windows": "10.0.26200",
+  "cpu": "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz",
+  "logical_cpus": 12,
+  "memory_gb": 31.8,
+  "packages": {
+   "numpy": "2.5.5",
+   "scipy": "1.18.1",
+   "simpleitk": "2.5.5",
+   "vtk": "9.7.2",
+   "pynrrd": "1.1.4",
+   "nibabel": "5.5.0",
+   "pydicom": "3.0.2",
+   "torch": "2.15.0+cpu",
+   "monai": "1.6.2",
+   "TotalSegmentator": "2.18.0",
+   "nnunetv2": "2.8.1",
+   "scikit-image": "0.26.0",
+   "connected-components-3d": "4.1.1"
+  },
+  "python_exe_arch": "x64",
+  "python_dll_arch": "x64",
+  "system": {
+   "system": {
+    "manufacturer": "Alienware",
+    "model": "Alienware Aurora R8",
+    "family": "Alienware"
+   },
+   "os": {
+    "name": "Windows 11 Education",
+    "version": "25H2",
+    "build": "26200.9974",
+    "kernel": "10.0.26200"
+   },
+   "architecture": {
+    "machine": "x64",
+    "python_process": "x64",
+    "emulated": false
+   },
+   "cpu": {
+    "name": "Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz",
+    "vendor": "GenuineIntel",
+    "identifier": "Intel64 Family 6 Model 158 Stepping 10",
+    "sockets": 1,
+    "physical_cores": 6,
+    "logical_cpus": 12,
+    "max_mhz": 3192,
+    "l2_cache_kb": 1536,
+    "l3_cache_kb": 12288,
+    "smt": true,
+    "features": [
+     "sse4_2",
+     "avx",
+     "avx2"
+    ]
+   },
+   "memory": {
+    "total_gb": 32.0,
+    "usable_gb": 31.8,
+    "type": "DDR4",
+    "speed_mts": 2666,
+    "modules": 2,
+    "manufacturer": "01980000802C"
+   },
+   "gpus": [
+    {
+     "name": "Meta Virtual Monitor",
+     "vendor": "Meta Inc.",
+     "driver": "15.52.32.370",
+     "driver_date": "2026-04-22",
+     "virtual": true
+    },
+    {
+     "name": "NVIDIA GeForce RTX 3060",
+     "vendor": "NVIDIA",
+     "driver": "32.0.16.1088",
+     "driver_date": "2026-07-21",
+     "dedicated_memory_gb": 12.0,
+     "nvidia_driver": "610.88",
+     "cuda_compute_capability": "8.6"
+    },
+    {
+     "name": "Intel(R) UHD Graphics 630",
+     "vendor": "Intel Corporation",
+     "driver": "27.20.100.9664",
+     "driver_date": "2021-05-31",
+     "dedicated_memory_gb": 1.0
+    }
+   ],
+   "npus": [],
+   "storage": [
+    {
+     "name": "Corsair Force GT",
+     "media": "SSD",
+     "bus": "RAID",
+     "size_gb": 224.0
+    },
+    {
+     "name": "PC401 NVMe SK hynix 1TB",
+     "media": "SSD",
+     "bus": "RAID",
+     "size_gb": 954.0,
+     "system_disk": true
+    }
+   ],
+   "power": {
+    "source": "AC",
+    "plan": "High performance"
+   },
+   "python": {
+    "version": "3.12.10",
+    "implementation": "CPython",
+    "compiler": "MSC v.1943 64 bit (AMD64)",
+    "platform": "win-amd64",
+    "executable": "<repo>/.envs/x64/Scripts/python.exe"
+   }
+  }
+ },
+ "loaded_modules": {
+  "summary": {
+   "x64": 64
+  },
+  "modules": {
+   "<python>/DLLs/_bz2.pyd": "x64",
+   "<python>/DLLs/_ctypes.pyd": "x64",
+   "<python>/DLLs/_decimal.pyd": "x64",
+   "<python>/DLLs/_hashlib.pyd": "x64",
+   "<python>/DLLs/_lzma.pyd": "x64",
+   "<python>/DLLs/_queue.pyd": "x64",
+   "<python>/DLLs/_socket.pyd": "x64",
+   "<python>/DLLs/_uuid.pyd": "x64",
+   "<python>/DLLs/_wmi.pyd": "x64",
+   "<python>/DLLs/libcrypto-3.dll": "x64",
+   "<python>/DLLs/libffi-8.dll": "x64",
+   "<python>/DLLs/select.pyd": "x64",
+   "<python>/DLLs/unicodedata.pyd": "x64",
+   "<python>/python.exe": "x64",
+   "<python>/python3.dll": "x64",
+   "<python>/python312.dll": "x64",
+   "<python>/vcruntime140.dll": "x64",
+   "<python>/vcruntime140_1.dll": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/charset_normalizer/cd.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/charset_normalizer/md.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy.libs/libscipy_openblas64_-4e39871015dc1470c682dc512497ee22.dll": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy.libs/msvcp140-a4c2229bdc2a2a630acdc095b4d86008.dll": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/_core/_multiarray_umath.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/fft/_pocketfft_umath.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/linalg/_umath_linalg.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/random/_bounded_integers.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/random/_common.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/random/_generator.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/random/_mt19937.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/random/_pcg64.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/random/_philox.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/random/_sfc64.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/random/bit_generator.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/numpy/random/mtrand.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/psutil/_psutil_windows.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy.libs/libscipy_openblas-197ee2fc9b4d071f7e048078cac74115.dll": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/_cyutility.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/_lib/_ccallback_c.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/_lib/_uarray/_uarray.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/fft/_duccfft/pyduccfft.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/_batched_linalg.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/_cythonized_array_utils.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/_decomp_update.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/_fblas.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/_flapack.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/_internal_matfuncs.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/_linalg_pythran.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/_solve_toeplitz.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/cython_blas.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/linalg/cython_lapack.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/ndimage/_nd_image.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/ndimage/_ni_label.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/ndimage/_rank_filter_1d.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/special/_comb.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/special/_ellip_harm_2.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/special/_gufuncs.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/special/_specfun.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/special/_special_ufuncs.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/special/_ufuncs.cp312-win_amd64.pyd": "x64",
+   "<repo>/.envs/x64/Lib/site-packages/scipy/special/_ufuncs_cxx.cp312-win_amd64.pyd": "x64",
+   "<programdata>/A-Volute/DellInc.AlienwareSoundCenter/Modules/ScheduledModules/x64/AudioDevProps2.dll": "x64",
+   "<programdata>/A-Volute/DellInc.AlienwareSoundCenter/Modules/ScheduledModules/x64/NahimicOSD.dll": "x64",
+   "<programdata>/A-Volute/DellInc.AlienwareSoundCenter/Modules/ScheduledModules/x64/ProductInfo.Dll": "x64",
+   "<programdata>/Microsoft/Windows Defender/Platform/4.18.26100.4-0/MpOAV.dll": "x64"
+  }
+ },
+ "tasks": {
+  "2a_window_level_uint8": {
+   "median_s": 1.8736801999621093,
+   "times_s": [
+    1.8545471000252292,
+    1.8736801999621093,
+    1.997660299995914
+   ],
+   "first_s": 1.9222999999765307,
+   "signature": {
+    "case01": 1980970513,
+    "case06": 3285520004,
+    "case11": 1427928002,
+    "case14": 2593020258,
+    "case18": 5148805808
+   }
+  },
+  "2a_zscore_clip_float32": {
+   "median_s": 2.6697131999535486,
+   "times_s": [
+    2.50934920005966,
+    2.691182399983518,
+    2.6697131999535486
+   ],
+   "first_s": 2.5858846999472007,
+   "signature": {
+    "case01": 50630000.0,
+    "case06": 72720000.0,
+    "case11": 26170000.0,
+    "case14": 66340000.0,
+    "case18": 75320000.0
+   }
+  },
+  "2a_elementwise_synthetic_512cubed": {
+   "median_s": 1.7176141999661922,
+   "times_s": [
+    1.8222127000335604,
+    1.7176141999661922,
+    1.6811010000528768
+   ],
+   "first_s": 1.6994770999299362,
+   "signature": {
+    "sum": 298200000.0
+   }
+  },
+  "2b_histogram": {
+   "median_s": 3.537767800036818,
+   "times_s": [
+    3.537767800036818,
+    3.675548700033687,
+    3.5127287999494
+   ],
+   "first_s": 4.053154299966991,
+   "signature": {
+    "case01": 0,
+    "case06": 0,
+    "case11": 1,
+    "case14": 1,
+    "case18": 1
+   }
+  },
+  "2b_percentiles": {
+   "median_s": 1.5040493999840692,
+   "times_s": [
+    1.529921800014563,
+    1.4965093999635428,
+    1.5040493999840692
+   ],
+   "first_s": 1.5186919000698254,
+   "signature": {
+    "case01": [
+     -1024.0,
+     -952.0,
+     239.0
+    ],
+    "case06": [
+     -1024.0,
+     -987.0,
+     309.0
+    ],
+    "case11": [
+     -1024.0,
+     -117.0,
+     376.0
+    ],
+    "case14": [
+     -1024.0,
+     -947.0,
+     302.0
+    ],
+    "case18": [
+     -3024.0,
+     -795.0,
+     384.0
+    ]
+   }
+  },
+  "2b_unique": {
+   "median_s": 1.959273299900815,
+   "times_s": [
+    2.063140199985355,
+    1.9534156000008807,
+    1.959273299900815
+   ],
+   "first_s": 2.0311535999644548,
+   "signature": {
+    "case01": 25,
+    "case06": 26,
+    "case11": 42,
+    "case14": 27,
+    "case18": 43
+   }
+  },
+  "2c_gaussian_filter": {
+   "median_s": 13.017398500000127,
+   "times_s": [
+    13.211170300026424,
+    13.017398500000127,
+    12.851992600015365
+   ],
+   "first_s": 13.001079100067727,
+   "signature": {
+    "case01": -35860000000.0,
+    "case06": -54590000000.0,
+    "case11": -12030000000.0,
+    "case14": -41190000000.0,
+    "case18": -89180000000.0
+   }
+  },
+  "2c_median_filter_crop": {
+   "median_s": 25.52053960005287,
+   "times_s": [
+    25.52053960005287,
+    25.602932900073938,
+    25.344880899996497
+   ],
+   "first_s": 25.352481800015084,
+   "signature": {
+    "case01": -1921000000.0,
+    "case06": -875600000.0,
+    "case11": -207100000.0,
+    "case14": -973500000.0,
+    "case18": -916100000.0
+   }
+  },
+  "2c_binary_dilate_erode": {
+   "median_s": 6.3234479000093415,
+   "times_s": [
+    6.3322133999317884,
+    6.3234479000093415,
+    6.278591200010851
+   ],
+   "first_s": 6.339689699932933,
+   "signature": {
+    "case01": 17157477,
+    "case06": 23869167,
+    "case11": 13540130,
+    "case14": 25806687,
+    "case18": 44527832
+   }
+  },
+  "2d_label_largest_component_edt": {
+   "median_s": 16.807415599934757,
+   "times_s": [
+    16.959313200088218,
+    16.807415599934757,
+    16.560265899985097
+   ],
+   "first_s": 16.558377500041388,
+   "signature": {
+    "case01": [
+     689,
+     70.39
+    ],
+    "case06": [
+     258,
+     97.97
+    ],
+    "case11": [
+     214,
+     112.0
+    ],
+    "case14": [
+     463,
+     89.43
+    ],
+    "case18": [
+     2929,
+     101.2
+    ]
+   }
+  },
+  "2e_zoom_isotropic_1.5mm": {
+   "median_s": 2.673691700096242,
+   "times_s": [
+    2.6706261000363156,
+    2.7402468000072986,
+    2.673691700096242
+   ],
+   "first_s": 2.7142231999896467,
+   "signature": {
+    "case01": [
+     140,
+     307,
+     307
+    ],
+    "case06": [
+     207,
+     240,
+     240
+    ],
+    "case11": [
+     275,
+     253,
+     253
+    ],
+    "case14": [
+     177,
+     267,
+     267
+    ],
+    "case18": [
+     152,
+     240,
+     240
+    ]
+   }
+  },
+  "2e_affine_rotation": {
+   "median_s": 21.91440339991823,
+   "times_s": [
+    21.93787380005233,
+    21.846055799978785,
+    21.91440339991823
+   ],
+   "first_s": 21.723131800070405,
+   "signature": {
+    "case01": -652.1,
+    "case06": -671.8,
+    "case11": -452.4,
+    "case14": -596.1,
+    "case18": -781.9
+   }
+  },
+  "2f_pca_bone_points_svd": {
+   "median_s": 1.0531754000112414,
+   "times_s": [
+    1.0454029999673367,
+    1.0531754000112414,
+    1.139729900052771
+   ],
+   "first_s": 1.1088096000021324,
+   "signature": {
+    "case01": [
+     50500.0,
+     48950.0,
+     38270.0
+    ],
+    "case06": [
+     96200.0,
+     70160.0,
+     52830.0
+    ],
+    "case11": [
+     78150.0,
+     51960.0,
+     21740.0
+    ],
+    "case14": [
+     88610.0,
+     68550.0,
+     49590.0
+    ],
+    "case18": [
+     117100.0,
+     88720.0,
+     81020.0
+    ]
+   }
+  },
+  "2f_svd_2000": {
+   "median_s": 3.1524674999527633,
+   "times_s": [
+    3.1524674999527633,
+    4.034915199968964,
+    2.4366149000125006
+   ],
+   "first_s": 3.500349899986759,
+   "signature": {
+    "smax": 89.11,
+    "smin": 0.00457
+   }
+  },
+  "2f_matmul_2000": {
+   "median_s": 0.0515029999660328,
+   "times_s": [
+    0.08017149998340756,
+    0.050458400044590235,
+    0.0515029999660328
+   ],
+   "first_s": 0.05088090000208467,
+   "signature": {
+    "trace": 3999000.0
+   }
+  },
+  "2f_landmark_fit_lstsq_kabsch": {
+   "median_s": 0.018097100080922246,
+   "times_s": [
+    0.017836099956184626,
+    0.018097100080922246,
+    0.02057189994957298
+   ],
+   "first_s": 0.018197800032794476,
+   "signature": {
+    "affine00": 0.98,
+    "rot_det": 1.0
+   }
+  },
+  "2f_eigh_batch_3x3": {
+   "median_s": 1.1895066000288352,
+   "times_s": [
+    1.1895066000288352,
+    1.2186228999635205,
+    1.1641337000764906
+   ],
+   "first_s": 1.154509500018321,
+   "signature": {
+    "mean_max_eig": 6.73
+   }
+  },
+  "2g_fft_phase_correlation": {
+   "median_s": 1.8666279999306425,
+   "times_s": [
+    1.8666279999306425,
+    1.954537299927324,
+    1.8477334999479353
+   ],
+   "first_s": 1.848045099992305,
+   "signature": {
+    "case01": [
+     5,
+     -3,
+     7
+    ],
+    "case06": [
+     5,
+     -3,
+     7
+    ],
+    "case11": [
+     5,
+     -3,
+     7
+    ],
+    "case14": [
+     5,
+     -3,
+     7
+    ],
+    "case18": [
+     5,
+     -3,
+     7
+    ]
+   }
+  }
+ },
+ "cases": [
+  "case01",
+  "case06",
+  "case11",
+  "case14",
+  "case18"
+ ],
+ "section_wall_time_s": 430.81403780006804,
+ "start_epoch": 1795562736.7639573,
+ "end_epoch": 1795563167.585379,
+ "library_threads": {},
+ "foreign_load": {
+  "mean": 7.8,
+  "max": 13.9,
+  "samples": 63
+ }
+}
