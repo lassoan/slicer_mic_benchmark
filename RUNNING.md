@@ -160,9 +160,10 @@ The `vtk==9.7.2` line in `requirements.lock` is mapped to the locally built `9.7
 
 ## ARM64 computers: the optional ARM64EC environment
 
-There is no official ARM64EC build of CPython. The `arm64ec` environment needs a CPython 3.12 built for ARM64EC
-(this one was built with python-cmake-buildsystem). Pass it with `--arm64ec-python <path to python.exe>` or the
-`ARM64EC_PYTHON` environment variable. Without one, `arm64ec` is skipped.
+There is no official ARM64EC build of CPython. The `arm64ec` environment needs a CPython 3.12.10 built for
+ARM64EC: see [Building the ARM64EC Python](METHOD.md#building-the-arm64ec-python). Pass it with
+`--arm64ec-python <path to python.exe>` or the `ARM64EC_PYTHON` environment variable. Without one, `arm64ec` is
+skipped.
 
 ## ARM64 computers: the NPU
 
