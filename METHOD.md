@@ -225,8 +225,25 @@ the network evaluation differs.
 | 6a Single patch | one 112×112×144 patch, median of 5 after a warm-up, with 1 thread and with all threads; PyTorch and ONNX Runtime (CPU) |
 | 6b Sliding window | each AI case, all threads; PyTorch and ONNX Runtime (CPU) |
 | NPU (arm64, Snapdragon only) | 6a and 6b with the `onnxruntime-qnn` plugin: Hexagon HTP backend, fp16, no CPU fallback. Uses a fixed-shape copy of the model (`scripts/make_static_onnx.py`) compiled once into an "EP context" model (`scripts/npu_probe.py --make-context`, about 17 minutes) |
+| 6c TotalSegmentator full resolution on the NPU (arm64, Snapdragon only) | the same TotalSegmentator call as 5b, on the same case, with its 5 nnU-Net networks on the NPU (fp16, no CPU fallback). See below |
 
-Output check: Dice of the ONNX Runtime and NPU label maps against PyTorch, in each run.
+Output check: Dice of the ONNX Runtime and NPU label maps against PyTorch, in each run. For 6c: Dice per label
+against the 5b result of the arm64 environment and of x64.
+
+**6c in detail** (`bench/totalseg_npu.py`):
+
+- The 5 networks of task `total` at 1.5 mm (Dataset291–295, `3d_fullres`, fold 0) are built by nnU-Net itself, as
+  TotalSegmentator does, and exported to ONNX with a fixed 1×1×128×128×128 input (`scripts/export_totalseg_onnx.py`,
+  opset 17). The export needs the `onnx` package: it is installed to `.envs/onnx-addon-arm64`
+  ([requirements-export-arm64.txt](requirements-export-arm64.txt)) and added to `PYTHONPATH` only for the export,
+  so the measured arm64 environment does not change.
+- Each network is compiled once into an "EP context" model (`scripts/totalseg_npu.py compile`): about 35 minutes
+  and 5 GB of memory per network, several in parallel as the free memory allows; 600 MB per model.
+- During the task, only `nnUNetPredictor._internal_maybe_mirror_and_predict`, which evaluates the network on one
+  patch, is replaced by the NPU session of the matching network. Cropping, resampling, preprocessing, the sliding
+  window with Gaussian weighting and writing the result are TotalSegmentator's and nnU-Net's own code on the CPU, as
+  in 5b. Loading the 5 NPU models is part of the timed task, as loading the weights is in 5b.
+- The NPU runs one patch at a time: concurrent requests from several threads or sessions are not faster.
 
 ## Extra checks (`bench/extra_checks.py`)
 

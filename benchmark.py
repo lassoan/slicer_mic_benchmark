@@ -266,7 +266,29 @@ def cmd_data(args):
             log("compiling the NPU (QNN) context model; takes about 15-20 minutes, once")
             if run([env_python("arm64"), "scripts/npu_probe.py", "--make-context"], check=False) != 0:
                 log("no NPU context model: the NPU tasks of section 6 will be skipped")
+        if list((ROOT / "data" / "models" / "onnx").glob("*_ctx.onnx")):
+            prepare_totalseg_npu()
     log("data ready")
+
+
+def prepare_totalseg_npu():
+    """Task 6c: export the 5 TotalSegmentator full-resolution networks to ONNX and compile them for the NPU."""
+    d = ROOT / "data" / "models" / "onnx" / "totalseg"
+    if len(list(d.glob("*_ctx.onnx"))) >= 5:
+        return
+    if len([f for f in d.glob("*.onnx") if not f.stem.endswith("_ctx")]) < 5:
+        log("exporting the TotalSegmentator full-resolution networks to ONNX (arm64 environment + onnx add-on)")
+        addon = ROOT / ".envs" / "onnx-addon-arm64"
+        run([env_python("arm64"), "-m", "pip", "install", "-q", "--no-deps", "--target", addon, "-r",
+             ROOT / "requirements-export-arm64.txt"])
+        if run([env_python("arm64"), "scripts/export_totalseg_onnx.py"], check=False,
+               env={"PYTHONPATH": str(addon)}) != 0:
+            log("TotalSegmentator ONNX export failed: task 6c will be skipped")
+            return
+    log("compiling the 5 TotalSegmentator networks for the NPU; about 35 minutes each, several in parallel "
+        "(as many as fit in the free memory, 5 GB each), once")
+    if run([env_python("arm64"), "scripts/totalseg_npu.py", "compile"], check=False) != 0:
+        log("not all TotalSegmentator NPU models were compiled: task 6c will be skipped")
 
 
 def case_ids():
@@ -301,7 +323,7 @@ def latest_results(results):
             d = json.loads(f.read_text())
         except (ValueError, OSError):
             continue
-        if "start_epoch" in d:
+        if "start_epoch" in d and not d.get("task_filter"):  # partial runs (--tasks) add to a full run
             found[(d["environment"]["env"], d["section"], d["threads"])] = d
     return found
 

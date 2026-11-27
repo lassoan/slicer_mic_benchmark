@@ -45,6 +45,13 @@ def label_signature(path):
     return {"labels": labels, "foreground_voxels": int(counts[1:].sum())}
 
 
+def run_totalseg(case, out, fast, threads):
+    """TotalSegmentator task "total" on the CPU, multi-label output (also used by task 6c, with the NPU)."""
+    from totalsegmentator.python_api import totalsegmentator
+    totalsegmentator(config.NIFTI_DIR / f"{case}.nii.gz", out, ml=True, fast=fast, task="total",
+                     device="cpu", nr_thr_resamp=threads, nr_thr_saving=min(threads, 6), quiet=True)
+
+
 def run(runner, cases=None, tasks=None, threads=1, env="unknown"):
     cases = cases or config.ai_cases()
     setup_totalseg_env()
@@ -57,13 +64,10 @@ def run(runner, cases=None, tasks=None, threads=1, env="unknown"):
         return tasks is None or any(name.startswith(t) for t in tasks)
 
     if want("5a") or want("5b"):
-        from totalsegmentator.python_api import totalsegmentator
-
         def ts(case, fast):
             def fn():
                 out = seg_dir / f"{case}-totalseg-{'fast' if fast else 'full'}.nii.gz"
-                totalsegmentator(config.NIFTI_DIR / f"{case}.nii.gz", out, ml=True, fast=fast, task="total",
-                                 device="cpu", nr_thr_resamp=threads, nr_thr_saving=min(threads, 6), quiet=True)
+                run_totalseg(case, out, fast, threads)
                 return label_signature(out)
             return fn
 

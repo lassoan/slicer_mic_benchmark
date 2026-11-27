@@ -66,6 +66,8 @@ The reports with charts are on the repository's GitHub Pages site.
    - ONNX Runtime (CPU)
    - in arm64, ONNX Runtime with the QNN plugin on the Hexagon NPU
 
+   On the NPU, also TotalSegmentator at full resolution (as in section 5), with its 5 nnU-Net networks on the NPU.
+
 **Extra checks:** SVD thread scaling and zlib speed and compression ratio, in each environment.
 
 ## Test data
