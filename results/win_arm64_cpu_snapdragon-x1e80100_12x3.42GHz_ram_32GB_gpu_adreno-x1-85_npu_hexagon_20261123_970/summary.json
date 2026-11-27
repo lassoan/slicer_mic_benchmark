@@ -1694,6 +1694,16 @@
       "arm64ec": null,
       "arm64": null
      }
+    },
+    {
+     "task": "6c_totalseg_full_npu_qnn_fp16_case01",
+     "times": {
+      "arm64": 126.44576119999692
+     },
+     "speedup": {
+      "arm64ec": null,
+      "arm64": null
+     }
     }
    ],
    "geomean": {

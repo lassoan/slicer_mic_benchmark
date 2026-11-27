@@ -79,6 +79,24 @@ original size instead of 51%. Without the gzip tasks, ARM64EC is close to 1.0×.
     - Compiling takes about 17 minutes and is done once. The result is saved as a 1.9 GB "EP context" model
       that loads in 6 s.
     - The model needs fixed input shapes.
+- **TotalSegmentator full resolution on the NPU: 2.1 minutes instead of 51** (task 6c, case01, added on
+  2026-11-27).
+  - This is the same TotalSegmentator call as task 5b, but its 5 nnU-Net networks run on the NPU (fp16, no CPU
+    fallback). Cropping, resampling, preprocessing, the sliding window and writing the result stay on the CPU.
+  - Speed:
+    - 24× faster than PyTorch on arm64 (50.6 min)
+    - 3.7× faster than PyTorch under x64 emulation (7.8 min)
+    - 3.8× faster than ARM64EC (8.0 min)
+  - Where the 126 s go:
+    - NPU: 90 patches of 128³ voxels at 0.48 s each, 44 s in total
+    - loading the 5 compiled models: 12.5 s
+    - CPU work: the remaining 70 s, now more than half of the run
+  - Agreement with the PyTorch result (task 5b): mean Dice over the 52 labels 0.9999, minimum 0.9979, against
+    both arm64 and x64.
+  - NPU setup:
+    - Each network is compiled once: about 35 minutes and 5 GB of memory, about 3 hours for all 5 one after the
+      other. The compiled models take 3 GB.
+    - The NPU runs one patch at a time. Sending patches from several threads or sessions is not faster.
 - **Other observations:**
   - **Linear algebra threading on arm64:** the arm64 OpenBLAS in the numpy/scipy wheels stops scaling at 4
     threads. A 2000×2000 SVD takes 2.96 s with 1 thread, 2.06 s with 4 threads and 2.27 s with 12 threads. x64
@@ -89,6 +107,11 @@ original size instead of 51%. Without the gzip tasks, ARM64EC is close to 1.0×.
 
 - **One machine.** Each value is the median of 3 timed repeats after a warm-up. The AI tasks have one run per
   case.
+- **Task 6c was added later.** It ran on 2026-11-27 with the same environments, 3 days after the rest of this
+  run. Its result file holds only this task (`arm64/20261127-090859-onnx-t12.json`), which `compare.py` adds to
+  section 6. During it, other load averaged 4.6% of the machine, above the 4% limit that triggers a repeat. Most
+  of it was the Windows `System` process, very likely the NPU driver and the loading of the 3 GB of models, which
+  are part of the task. A repeat would show the same, so the run was not repeated.
 - **Load from other processes:**
   - During the first pass, another build ran on the same machine and slowed some runs, mainly AI, by 20–40%.
   - The main pass waited for an idle machine before each run, logged outside load, and repeated the runs that
