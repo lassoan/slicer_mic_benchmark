@@ -184,19 +184,27 @@ def ai_backends(groups):
     return out, cases
 
 
+def later_note(row):
+    """'run 2026-11-27, 3 days after the rest of this run' for a task added to the run later, else ''."""
+    later = (row or {}).get("run_later", {})
+    return "; ".join(f"run {v['date']}, {v['days_later']} day{'s' if v['days_later'] != 1 else ''} after the rest "
+                     f"of this run" if v["days_later"] > 0 else f"run {v['date']}, separately from the rest of this run"
+                     for v in later.values())
+
+
 def totalseg_full(groups):
-    """[(case, [(label, seconds)])]: TotalSegmentator full resolution with PyTorch (task 5b, each environment)
-    and with the networks on the NPU (task 6c), for the cases that ran on the NPU."""
-    rows = {g["section"]: {r["task"]: r["times"] for r in g["rows"]} for g in groups if g["section"] in ("ai", "onnx")}
+    """[(case, [(label, seconds)], note)]: TotalSegmentator full resolution with PyTorch (task 5b, each environment)
+    and with the networks on the NPU (task 6c), for the cases that ran on the NPU; note: when 6c was run later."""
+    rows = {g["section"]: {r["task"]: r for r in g["rows"]} for g in groups if g["section"] in ("ai", "onnx")}
     out = []
-    for task, times in rows.get("onnx", {}).items():
+    for task, row in rows.get("onnx", {}).items():
         if not task.startswith("6c_totalseg_full_npu_qnn_fp16_"):
             continue
         case = task.rsplit("_", 1)[1]
-        torch_times = rows.get("ai", {}).get(f"5b_totalseg_full_{case}", {})
+        torch_times = rows.get("ai", {}).get(f"5b_totalseg_full_{case}", {}).get("times", {})
         cols = [(f"PyTorch, {ENV_LABEL[e]}", t) for e, t in torch_times.items() if t]
-        cols += [(f"{BACKEND['npu_qnn_fp16']}, {ENV_LABEL[e]}", t) for e, t in times.items() if t]
-        out.append((case, cols))
+        cols += [(f"{BACKEND['npu_qnn_fp16']}, {ENV_LABEL[e]}", t) for e, t in row["times"].items() if t]
+        out.append((case, cols, later_note(row)))
     return out
 
 
@@ -252,11 +260,12 @@ def auto_findings(summary, head, envs, others, emulated, extra, backends):
             parts = [f"{t / t0:.1f}× faster than {BACKEND[b]} on {ENV_LABEL[e]}" for t, b, e in totals[1:]]
             f.append(f"**Fastest AI inference** (MONAIAuto3DSeg network, sliding window, {len(backends[b0][e0])} "
                      f"cases): {BACKEND[b0]} on {ENV_LABEL[e0]}, {t0:.1f} s in total; " + ", ".join(parts) + ".")
-    for case, cols in totalseg_full(groups):
+    for case, cols, note in totalseg_full(groups):
         npu = [t for lbl, t in cols if "NPU" in lbl]
         others_t = [(lbl, t) for lbl, t in cols if "NPU" not in lbl]
         if npu and others_t:
-            f.append(f"**TotalSegmentator full resolution on the NPU** ({case}): {npu[0] / 60:.1f} min; " + ", ".join(
+            f.append(f"**TotalSegmentator full resolution on the NPU** ({case}{'; ' + note if note else ''}): {npu[0] / 60:.1f} min; " +
+                     ", ".join(
                 f"{t / npu[0]:.1f}× faster than {lbl} ({t / 60:.1f} min)" for lbl, t in others_t) + ".")
     if extra:
         for e in envs:
@@ -428,11 +437,16 @@ def main():
                "evaluated on the NPU (task 6c, fp16, no CPU fallback). Preprocessing, resampling and the sliding "
                "window run on the CPU as in 5b.", "",
                "| Case | Configuration | Time | Speed-up of NPU |", "| --- | --- | ---: | ---: |"]
-        for case, cols in ts_full:
+        for case, cols, note in ts_full:
             npu = next((t for lbl, t in cols if "NPU" in lbl), None)
             for lbl, t in cols:
-                md.append(f"| {case} | {lbl} | {t / 60:.1f} min | " + (f"{t / npu:.1f}× |" if npu else "– |"))
+                md.append(f"| {case} | {lbl}{f' ({note})' if note and 'NPU' in lbl else ''} | {t / 60:.1f} min | " +
+                          (f"{t / npu:.1f}× |" if npu else "– |"))
         md.append("")
+        notes = sorted({note for _, _, note in ts_full if note})
+        if notes:
+            md += ["The NPU task was added to this run later (" + "; ".join(notes) + "), in the same environments. "
+                   "The PyTorch times are from the original run.", ""]
 
     if extra:
         md += ["## Other checks", ""]

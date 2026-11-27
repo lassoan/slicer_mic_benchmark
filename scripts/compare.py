@@ -57,11 +57,26 @@ def latest_results():
                 base["tasks"] = {**base["tasks"], **d["tasks"]}
                 for k, v in d.items():
                     base.setdefault(k, v)
-                base.setdefault("added_from", []).append(f.name)
+                # when and under what load the added tasks ran (shown in the summary, the report and tasks.csv)
+                base["added_tasks"] = {**base.get("added_tasks", {}), **{t: {
+                    "file": f.name, "timestamp": d.get("timestamp"), "foreign_load": d.get("foreign_load"),
+                    "start_epoch": d.get("start_epoch"), "end_epoch": d.get("end_epoch")} for t in d["tasks"]}}
                 found[key] = (found[key][0], base)
             else:
                 found[key] = (f, d)  # sorted by timestamp: last wins
     return found
+
+
+def run_later(envs, task):
+    """{env: {"date", "days_later"}} for environments where the task was added to the run by a later partial run."""
+    out = {}
+    for e, v in envs.items():
+        added = v and v[1].get("added_tasks", {}).get(task)
+        if added and added.get("timestamp") and v[1].get("timestamp"):
+            import datetime
+            a, b = (datetime.date.fromisoformat(x[:10]) for x in (added["timestamp"], v[1]["timestamp"]))
+            out[e] = {"date": str(a), "days_later": (a - b).days}
+    return out
 
 
 def load_log():
@@ -119,11 +134,12 @@ def write_csv(found):
             d = dict(d, environment=e)
         system = e.get("system", {})
         os_name = " ".join(str(x) for x in (system.get("os", {}).get("name"), system.get("os", {}).get("build")) if x)             or (f"Windows {e['windows']}" if e.get("windows") else None)
-        load = foreign_load(d, LOAD) or {}
         for task, r in d["tasks"].items():
+            added = d.get("added_tasks", {}).get(task)
+            load = foreign_load(dict(d, **added) if added else d, LOAD) or {}
             times = r.get("times_s") or []
             rows.append({"run": RESULTS.name, "computer_id": computer_id(d), "cpu": e.get("cpu"), "os": os_name,
-                         "timestamp": d.get("timestamp"), "env": env, "python_arch": e.get("python_exe_arch"),
+                         "timestamp": (added or d).get("timestamp"), "env": env, "python_arch": e.get("python_exe_arch"),
                          "section": section, "threads": threads, "task": task,
                          "median_s": round(r["median_s"], 6), "min_s": round(min(times), 6) if times else None,
                          "max_s": round(max(times), 6) if times else None,
@@ -266,9 +282,10 @@ def main():
             for e, v in sx.items():
                 if v:
                     logs[e].append(math.log(v))
-            md.append(f"| {task} | " + " | ".join(fmt_t(t.get(e)) for e in ENVS) +
-                      "".join(f" | {fmt_x(sx[e])}" for e in OTHERS) + " |")
-            rows.append({"task": task, "times": t, "speedup": sx})
+            later = run_later(envs, task)
+            md.append(f"| {task}" + "".join(f" (run later: {e}, {v['date']})" for e, v in later.items()) + " | " +
+                      " | ".join(fmt_t(t.get(e)) for e in ENVS) + "".join(f" | {fmt_x(sx[e])}" for e in OTHERS) + " |")
+            rows.append({"task": task, "times": t, "speedup": sx, **({"run_later": later} if later else {})})
             if ref and section != "startup" and task in ref["tasks"]:
                 for e in OTHERS:
                     if envs[e] and task in envs[e][1]["tasks"]:

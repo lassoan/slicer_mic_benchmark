@@ -1703,6 +1703,12 @@
      "speedup": {
       "arm64ec": null,
       "arm64": null
+     },
+     "run_later": {
+      "arm64": {
+       "date": "2026-11-27",
+       "days_later": 3
+      }
      }
     }
    ],

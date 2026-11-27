@@ -213,7 +213,7 @@ CPU load from other processes during the run (% of machine, mean / max): x64 2.3
 | 6b_sliding_window_npu_qnn_fp16_case03 | – | – | 6.939 | – | – |
 | 6b_sliding_window_npu_qnn_fp16_case11 | – | – | 3.364 | – | – |
 | 6b_sliding_window_npu_qnn_fp16_case13 | – | – | 3.126 | – | – |
-| 6c_totalseg_full_npu_qnn_fp16_case01 | – | – | 126.4 | – | – |
+| 6c_totalseg_full_npu_qnn_fp16_case01 (run later: arm64, 2026-11-27) | – | – | 126.4 | – | – |
 | **Geometric mean** | | | | **1.01×** | **0.59×** |
 
 CPU load from other processes during the run (% of machine, mean / max): x64 1.6 / 8.2, arm64ec 1.6 / 6.4, arm64 1.8 / 9.8
