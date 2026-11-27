@@ -22,6 +22,9 @@ Measured on the Snapdragon X Elite.
 - **ONNX Runtime is the fix:**
   - On the arm64 CPU, it is faster than any x64 option.
   - On the Hexagon NPU, it is a further 3.2–4.1× faster.
+- **TotalSegmentator full resolution on the Snapdragon NPU takes 2.1 minutes per case.** This compares with
+  51 minutes with PyTorch on native arm64, 7.8 minutes under x64 emulation, and 5.7 minutes on the Core i7-12700H
+  CPU. The output matches PyTorch: mean Dice 0.9999. The cost is a one-time compile of about 3 hours.
 
 ## AI segmentation on the CPU
 
