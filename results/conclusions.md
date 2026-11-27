@@ -41,11 +41,16 @@ Measured on the Snapdragon X Elite.
   | Computer and device | Time |
   | --- | ---: |
   | Core i7-12700H, NVIDIA RTX 3080 Ti Laptop GPU (CUDA) | 90.0 s |
+  | Core i7-8700, NVIDIA RTX 3060 (CUDA) | 110.5 s |
   | Snapdragon X Elite, Hexagon NPU | 126.4 s |
   | Core i7-12700H, CPU | 340.9 s |
   | Snapdragon X Elite, x64 under emulation, CPU | 468.2 s |
+  | Core i7-8700, CPU | 488.1 s |
 
-  - The RTX 3080 Ti is 3.8× faster than the CPU of the same laptop. Its output matches the CPU: mean Dice 0.9999.
+  - Each GPU is 3.8–4.4× faster than the CPU of the same computer:
+    - RTX 3080 Ti: 3.8×
+    - RTX 3060: 4.4×
+  - The GPU outputs match the CPU: mean Dice 0.9999.
   - The GPU needs no preparation. The NPU needs a one-time compile of about 3 hours.
 
 ## Threads

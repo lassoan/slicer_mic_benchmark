@@ -860,6 +860,19 @@
       "x64": 9.092666799901053
      },
      "speedup": {}
+    },
+    {
+     "task": "5d_totalseg_full_cuda_case01",
+     "times": {
+      "x64": 110.47532179998234
+     },
+     "speedup": {},
+     "run_later": {
+      "x64": {
+       "date": "2026-11-27",
+       "days_later": 3
+      }
+     }
     }
    ],
    "geomean": {}

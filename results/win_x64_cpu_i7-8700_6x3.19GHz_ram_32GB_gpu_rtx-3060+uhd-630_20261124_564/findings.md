@@ -53,6 +53,12 @@ Total time per section (sum of the task medians):
   - TotalSegmentator fast: 24.5–43.6 s per case.
   - TotalSegmentator full resolution: 488.1 s (8.1 minutes) for case01.
   - MONAIAuto3DSeg abdominal organs: 9.1–37.1 s per case.
+- **TotalSegmentator full resolution on the RTX 3060 GPU takes 110.5 s, 4.4× faster than on the CPU (488.1 s).**
+  This is task 5d, added on 2026-11-27.
+  - PyTorch 2.15.0+cu132, CUDA 13.2, 12 GB GPU memory.
+  - One cold run for case01, including loading the models and starting CUDA.
+  - The output matches the CPU result: mean Dice 0.9999 over 52 labels, lowest label 0.9977.
+  - Load from other processes during the run: 12.3% of the machine on average, 18.0% at most.
 - **ONNX Runtime is not faster than PyTorch here.** Same MONAIAuto3DSeg network, 12 threads (ONNX Runtime
   time / PyTorch time: 0.95–1.05 per case):
   - one patch: PyTorch 4.086 s, ONNX Runtime 4.714 s
