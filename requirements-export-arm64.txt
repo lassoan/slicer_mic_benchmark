@@ -1,0 +1,6 @@
+# Snapdragon computers only: the onnx package, needed to export the TotalSegmentator networks to ONNX in the arm64
+# environment (scripts/export_totalseg_onnx.py). benchmark.py data installs it with --no-deps to
+# .envs/onnx-addon-arm64 and adds that folder to PYTHONPATH for the export only, so the measured arm64 environment
+# does not change. protobuf, numpy and typing_extensions come from the arm64 environment.
+onnx==1.23.2
+ml_dtypes==0.7.0

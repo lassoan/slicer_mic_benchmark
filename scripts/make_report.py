@@ -184,6 +184,22 @@ def ai_backends(groups):
     return out, cases
 
 
+def totalseg_full(groups):
+    """[(case, [(label, seconds)])]: TotalSegmentator full resolution with PyTorch (task 5b, each environment)
+    and with the networks on the NPU (task 6c), for the cases that ran on the NPU."""
+    rows = {g["section"]: {r["task"]: r["times"] for r in g["rows"]} for g in groups if g["section"] in ("ai", "onnx")}
+    out = []
+    for task, times in rows.get("onnx", {}).items():
+        if not task.startswith("6c_totalseg_full_npu_qnn_fp16_"):
+            continue
+        case = task.rsplit("_", 1)[1]
+        torch_times = rows.get("ai", {}).get(f"5b_totalseg_full_{case}", {})
+        cols = [(f"PyTorch, {ENV_LABEL[e]}", t) for e, t in torch_times.items() if t]
+        cols += [(f"{BACKEND['npu_qnn_fp16']}, {ENV_LABEL[e]}", t) for e, t in times.items() if t]
+        out.append((case, cols))
+    return out
+
+
 # ----------------------------------------------------------------------------------------------- findings
 
 def auto_findings(summary, head, envs, others, emulated, extra, backends):
@@ -236,6 +252,12 @@ def auto_findings(summary, head, envs, others, emulated, extra, backends):
             parts = [f"{t / t0:.1f}× faster than {BACKEND[b]} on {ENV_LABEL[e]}" for t, b, e in totals[1:]]
             f.append(f"**Fastest AI inference** (MONAIAuto3DSeg network, sliding window, {len(backends[b0][e0])} "
                      f"cases): {BACKEND[b0]} on {ENV_LABEL[e0]}, {t0:.1f} s in total; " + ", ".join(parts) + ".")
+    for case, cols in totalseg_full(groups):
+        npu = [t for lbl, t in cols if "NPU" in lbl]
+        others_t = [(lbl, t) for lbl, t in cols if "NPU" not in lbl]
+        if npu and others_t:
+            f.append(f"**TotalSegmentator full resolution on the NPU** ({case}): {npu[0] / 60:.1f} min; " + ", ".join(
+                f"{t / npu[0]:.1f}× faster than {lbl} ({t / 60:.1f} min)" for lbl, t in others_t) + ".")
     if extra:
         for e in envs:
             svd = {int(k): v for k, v in extra.get(e, {}).get("svd_2000_s", {}).items()}
@@ -398,6 +420,19 @@ def main():
         md.append("")
         if "npu_qnn_fp16" in backends:
             md += ["The NPU runs the whole network (no CPU fallback) from a precompiled QNN context model.", ""]
+
+    ts_full = totalseg_full(groups)
+    if ts_full:
+        md += ["## TotalSegmentator full resolution on the NPU", "",
+               "Task `total` at 1.5 mm, the same TotalSegmentator call as task 5b, with its 5 nnU-Net networks "
+               "evaluated on the NPU (task 6c, fp16, no CPU fallback). Preprocessing, resampling and the sliding "
+               "window run on the CPU as in 5b.", "",
+               "| Case | Configuration | Time | Speed-up of NPU |", "| --- | --- | ---: | ---: |"]
+        for case, cols in ts_full:
+            npu = next((t for lbl, t in cols if "NPU" in lbl), None)
+            for lbl, t in cols:
+                md.append(f"| {case} | {lbl} | {t / 60:.1f} min | " + (f"{t / npu:.1f}× |" if npu else "– |"))
+        md.append("")
 
     if extra:
         md += ["## Other checks", ""]

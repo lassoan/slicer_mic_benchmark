@@ -12,6 +12,10 @@ NPU (arm64 environment only, when the onnxruntime-qnn plugin is installed): the 
 with the QNN execution provider (HTP backend, fp16 precision, no CPU fallback), using an "EP context" model
 with the precompiled NPU graph (scripts/npu_probe.py --make-context; compiling takes ~16 min, done once).
 Output check: the label maps from ONNX Runtime and torch are compared (Dice) in each run.
+
+6c TotalSegmentator "total" full resolution (as task 5b, on the first TOTALSEG_FULLRES_CASES cases) with its 5
+nnU-Net networks on the NPU (bench/totalseg_npu.py); arm64 environment with the NPU models only. Output check: Dice
+against the PyTorch CPU result of task 5b in the same environment and in x64.
 """
 
 import time
@@ -19,6 +23,7 @@ import time
 import numpy as np
 
 from bench import config, harness
+from bench import totalseg_npu as ts_npu
 from bench.t2_numpy import load_case, r
 from bench.t5_ai import MONAI_DIR, MONAI_MODELS
 
@@ -30,14 +35,16 @@ PATCH_REPEATS = 5
 NPU_CTX_FILE = ONNX_DIR / f"{MODEL_NAME}-static-qnn-htp-fp16_ctx.onnx"
 
 
-def npu_session():
-    """ONNX Runtime session on the Hexagon NPU (QNN EP plugin), or None if not available in this environment."""
+def npu_session(ctx_file=None):
+    """ONNX Runtime session of an EP context model on the Hexagon NPU (QNN EP plugin), or None if not available in
+    this environment. Default: the MONAI network."""
+    ctx_file = ctx_file or NPU_CTX_FILE
     try:
         import onnxruntime as ort
         import onnxruntime_qnn
     except ImportError:
         return None
-    if not NPU_CTX_FILE.exists():
+    if not ctx_file.exists():
         return None
     try:
         ort.register_execution_provider_library(onnxruntime_qnn.get_ep_name(), onnxruntime_qnn.get_library_path())
@@ -51,7 +58,7 @@ def npu_session():
     so.log_severity_level = 3
     so.add_session_config_entry("session.disable_cpu_ep_fallback", "1")
     so.add_provider_for_devices(npu, {"htp_performance_mode": "burst", "enable_htp_fp16_precision": "1"})
-    return ort.InferenceSession(str(NPU_CTX_FILE), so)
+    return ort.InferenceSession(str(ctx_file), so)
 
 
 def load_torch_model():
@@ -181,4 +188,30 @@ def run(runner, cases=None, tasks=None, threads=1, env="unknown"):
                 print(f"  {case}: Dice NPU vs torch mean {nd:.5f} min {nmin:.5f}")
             print(f"  {case}: input {tuple(inp.shape)}, Dice onnxruntime vs torch mean {mean_d:.5f} min {min_d:.5f}")
         extra["onnx_vs_torch"] = agreement
+
+    # --- 6c TotalSegmentator full resolution, networks on the NPU
+    if want("6c") and npu is not None and ts_npu.available():
+        from bench.t5_ai import label_signature, run_totalseg, setup_totalseg_env
+        setup_totalseg_env()
+        seg_dir = config.WORK_DIR / env / "seg"
+        seg_dir.mkdir(parents=True, exist_ok=True)
+        info = {}
+        for case in cases[:config.TOTALSEG_FULLRES_CASES]:
+            out = seg_dir / f"{case}-totalseg-full-npu.nii.gz"
+            stats = {}
+
+            def t_ts_npu(case=case, out=out, stats=stats):
+                with ts_npu.NpuPredictor() as p:
+                    run_totalseg(case, out, False, threads)
+                stats.update({k: round(v, 2) if isinstance(v, float) else v for k, v in p.stats.items()})
+                return label_signature(out)
+            runner.run(f"6c_totalseg_full_npu_qnn_fp16_{case}", t_ts_npu, warmup=0)
+            info[case] = dict(stats)
+            # Output check against the PyTorch CPU result (task 5b) of this environment and of x64
+            for ref_env in dict.fromkeys([env, "x64"]):
+                ref = config.WORK_DIR / ref_env / "seg" / f"{case}-totalseg-full.nii.gz"
+                if ref.exists():
+                    info[case][f"dice_vs_{ref_env}_torch"] = ts_npu.seg_dice(ref, out)
+            print(f"  {case}: TotalSegmentator full resolution on the NPU: {info[case]}")
+        extra["totalseg_npu"] = info
     return extra

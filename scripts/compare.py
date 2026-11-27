@@ -44,11 +44,23 @@ SECTION_TITLES = {
 
 
 def latest_results():
+    """Latest result file per section, thread count and environment. A partial run (bench.run --tasks, marked with
+    "task_filter") does not replace the earlier result: its tasks and extra entries are added to it (replacing
+    tasks of the same name), e.g. a task added to the benchmark after the run."""
     found = {}
     for env in ENVS:
         for f in sorted((RESULTS / env).glob("*.json")):
             d = json.loads(f.read_text())
-            found[(d["section"], d["threads"], env)] = (f, d)  # sorted by timestamp: last wins
+            key = (d["section"], d["threads"], env)
+            if d.get("task_filter") and key in found:
+                base = dict(found[key][1])
+                base["tasks"] = {**base["tasks"], **d["tasks"]}
+                for k, v in d.items():
+                    base.setdefault(k, v)
+                base.setdefault("added_from", []).append(f.name)
+                found[key] = (found[key][0], base)
+            else:
+                found[key] = (f, d)  # sorted by timestamp: last wins
     return found
 
 

@@ -41,6 +41,8 @@ def main():
     t0 = time.perf_counter()
     extra = mod.run(runner, cases=cases, tasks=tasks, threads=args.threads, env=args.env) or {}
     extra["section_wall_time_s"] = time.perf_counter() - t0
+    if tasks:
+        extra["task_filter"] = tasks  # partial run: scripts/compare.py adds its tasks to the full run's results
     extra["start_epoch"] = start_epoch
     extra["end_epoch"] = time.time()
     extra["library_threads"] = harness.set_library_threads(args.threads)
