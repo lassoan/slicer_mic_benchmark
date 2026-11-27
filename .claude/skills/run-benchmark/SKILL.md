@@ -137,6 +137,15 @@ Tell the user:
 - any failures or caveats
 - the report path
 
+## Adding a task to an existing run
+
+When asked to amend an earlier run with a task that was added to the benchmark later (for example 5d on a
+computer with an NVIDIA GPU, or 6c on a Snapdragon computer), follow "Adding a task to an existing run" in
+RUNNING.md. Use the run of the same computer (`results/<run>`, matching the computer id). Check the new result
+in `summary.md` (the task is marked with its date if it ran on a later day) and its output check in the result
+file (`cuda` or `totalseg_npu` entry: Dice against 5b). Add a finding to `findings.md` that names the date, and
+update `results/conclusions.md` if the result changes a conclusion. Then regenerate as in step 7.
+
 To publish, the files to commit are `results/<run>/` (logs and images are ignored by `.gitignore`),
 `results/all.csv`, `results/README.md` and `results/conclusions.md`. Commit, push or open a pull request only when the user asks. Pushing
 to the main branch rebuilds the results website.

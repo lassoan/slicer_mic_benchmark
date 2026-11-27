@@ -210,6 +210,15 @@ The 5 AI cases, all threads, one run per case.
 | 5a TotalSegmentator, fast | task `total`, `--fast` (3 mm), multi-label output | Dice per label against x64 |
 | 5b TotalSegmentator, full resolution | task `total` (1.5 mm), on the first case only (`TOTALSEG_FULLRES_CASES`) | same |
 | 5c MONAIAuto3DSeg | "Abdominal organs TS2 - quick" (3 mm, `abdominal-organs-3mm-v2.0.0`), run with the inference script of the SlicerMONAIAuto3DSeg extension, outside Slicer | same |
+| 5d TotalSegmentator, full resolution, NVIDIA GPU (only with an NVIDIA GPU) | the same call as 5b with `device="gpu"`, in x64 with the CUDA build of PyTorch. See below | Dice per label against 5b |
+
+Tasks 5a–5c use the CPU build of PyTorch in every environment, also on computers with an NVIDIA GPU. For task 5d,
+`benchmark.py setup` installs the CUDA build of the same PyTorch version (2.15.0+cu132,
+[requirements-cuda.txt](requirements-cuda.txt)) to `.envs/torch-cuda-x64`. `benchmark.py run` runs 5d right after
+the x64 section 5 run, as a separate process with that folder on `PYTHONPATH`, and `compare.py` adds its result
+to section 5. Like 5b, 5d is one cold run: it includes loading the models and starting CUDA. If PyTorch cannot use the GPU,
+the task is skipped, not run on the CPU. The result records the GPU, its memory and the CUDA and cuDNN
+versions.
 
 TotalSegmentator is installed without dipy, fury, pyarrow, blosc, imgkit and xvfbwrapper in every environment.
 They have no `win_arm64` wheels and are used only for reports, previews and statistics.

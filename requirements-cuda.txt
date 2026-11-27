@@ -1,0 +1,8 @@
+# Computers with an NVIDIA GPU only: the CUDA build of the locked PyTorch version, for task 5d (TotalSegmentator full
+# resolution on the GPU). benchmark.py setup installs it with --no-deps to .envs/torch-cuda-x64 and adds that folder
+# to PYTHONPATH for task 5d only, so the measured x64 environment does not change. PyTorch 2.15.0 for Windows is
+# built for CUDA 13.2 only: it needs an NVIDIA driver of the R580 series or newer and a GPU of the Turing
+# generation (RTX 20xx, GTX 16xx) or newer. Download about 3 GB.
+--index-url https://download.pytorch.org/whl/cu132
+torch==2.15.0+cu132
+torchvision==0.29.1+cu132

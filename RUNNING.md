@@ -26,7 +26,7 @@ An AI coding agent can do all of this, including checking the results and writin
 
 | Command | What it does | Time |
 | --- | --- | --- |
-| `python benchmark.py setup` | Downloads CPython 3.12.10 (x64; ARM64 on ARM64 computers) and creates the virtual environments in `.envs/`: `tools` (helper, not timed) and one per benchmark environment, with exactly the versions in [requirements.lock](requirements.lock) | 5–15 min |
+| `python benchmark.py setup` | Downloads CPython 3.12.10 (x64; ARM64 on ARM64 computers) and creates the virtual environments in `.envs/`: `tools` (helper, not timed) and one per benchmark environment, with exactly the versions in [requirements.lock](requirements.lock). With an NVIDIA GPU, also the CUDA build of PyTorch for task 5d (3 GB) | 5–15 min |
 | `python benchmark.py data` | Downloads the 20 CT series listed in [manifest/idc_series.csv](manifest/idc_series.csv) from the NCI Imaging Data Commons (2.2 GB) and converts them to NRRD/NIfTI. Downloads the TotalSegmentator and MONAIAuto3DSeg models and exports the MONAI network to ONNX. On a Snapdragon computer, also compiles the NPU models | 20–60 min; on a Snapdragon computer 1.5–3 h more |
 | `python benchmark.py run` | Runs all sections in all environments (interleaved), repeats runs that overlapped CPU load from other programs, runs the extra checks, then writes the report | 3–7 h |
 | `python benchmark.py report` | Rewrites the summary and the report from existing results | 1–3 min |
@@ -177,6 +177,39 @@ For task 6c (TotalSegmentator full resolution on the NPU), `data` also exports t
 ONNX and compiles each for the NPU. This takes about 35 minutes and 5 GB of memory per network; as many run in
 parallel as fit in the free memory (3 with 32 GB). The models take 3.6 GB in `data/models/onnx/totalseg/`. If a
 step fails, task 6c is skipped. To check the models: `.envs\arm64\Scripts\python scripts\totalseg_npu.py patch`.
+
+## Computers with an NVIDIA GPU
+
+If `nvidia-smi` finds an NVIDIA GPU, `setup` also installs the CUDA build of PyTorch
+([requirements-cuda.txt](requirements-cuda.txt), about 3 GB) to `.envs/torch-cuda-x64`, separately from the x64
+environment, and checks that it can use the GPU. `run` then adds task 5d: TotalSegmentator at full resolution on
+the GPU, right after section 5 in x64. The CUDA build is used only for this task, so all other x64 results stay
+CPU-only and comparable between computers.
+
+PyTorch 2.15.0 for Windows is built for CUDA 13.2. It needs an NVIDIA driver of the R580 series or newer and an
+RTX 20xx / GTX 16xx or newer GPU. If the GPU cannot be used, `setup` says so and task 5d is skipped.
+
+## Adding a task to an existing run
+
+A task that was added to the benchmark after a run, such as 5d or 6c, can be run later and added to that run.
+Task 5d, on a computer with an NVIDIA GPU:
+
+```
+python benchmark.py setup
+python benchmark.py run --results results/<run> --sections ai --tasks 5d --skip extra
+```
+
+Task 6c, on a Snapdragon computer:
+
+```
+python benchmark.py setup
+python benchmark.py data
+python benchmark.py run --results results/<run> --sections onnx --tasks 6c --envs arm64 --skip extra
+```
+
+`data` compiles the NPU models for 6c (about 1.5–3 hours, once). The new result file holds only the requested task;
+`compare.py` adds it to the run's results without replacing anything. If it ran on a later day, the summary and
+the report mark it with its date. Then update `findings.md`.
 
 ## Using an AI agent
 

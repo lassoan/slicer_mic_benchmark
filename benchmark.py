@@ -231,6 +231,55 @@ def cmd_setup(args):
     envs = args.envs.split(",") if args.envs else default_envs(args)
     ok = [e for e in envs if setup_env(e, args)]
     log(f"environments ready: {', '.join(ok) or 'none'} (host architecture: {host_arch()})")
+    if "x64" in ok and nvidia_gpus():
+        setup_cuda()
+
+
+# ----------------------------------------------------------------------------------------------- NVIDIA GPU (task 5d)
+
+CUDA_ADDON = ROOT / ".envs" / "torch-cuda-x64"
+
+
+def nvidia_gpus():
+    """Names of the NVIDIA GPUs that the driver reports (nvidia-smi), or []."""
+    smi = shutil.which("nvidia-smi")
+    if not smi:
+        return []
+    try:
+        r = subprocess.run([smi, "--query-gpu=name", "--format=csv,noheader"], capture_output=True, text=True,
+                           timeout=30)
+    except (OSError, subprocess.SubprocessError):
+        return []
+    return [x.strip() for x in r.stdout.splitlines() if x.strip()] if r.returncode == 0 else []
+
+
+def cuda_ready():
+    marker = CUDA_ADDON / "setup-done.txt"
+    return marker.exists() and marker.read_text().strip() == lock_hash("requirements-cuda.txt")
+
+
+def setup_cuda():
+    """Install the CUDA build of PyTorch to a separate folder, used (on PYTHONPATH) by task 5d only."""
+    if cuda_ready():
+        log("CUDA PyTorch for task 5d is up to date")
+        return True
+    log(f"NVIDIA GPU found ({', '.join(nvidia_gpus())}): installing the CUDA build of PyTorch for task 5d "
+        f"to {CUDA_ADDON.relative_to(ROOT)} (about 3 GB)")
+    if CUDA_ADDON.exists():
+        shutil.rmtree(CUDA_ADDON)
+    if run([env_python("x64"), "-m", "pip", "install", "-q", "--disable-pip-version-check", "--no-deps", "--target",
+            CUDA_ADDON, "-r", ROOT / "requirements-cuda.txt"], check=False) != 0:
+        log("ERROR: installing CUDA PyTorch failed: task 5d will be skipped")
+        return False
+    check = ("import torch; ok = torch.cuda.is_available(); "
+             "print('CUDA', torch.version.cuda, torch.cuda.get_device_name(0) if ok else 'NOT AVAILABLE'); "
+             "raise SystemExit(0 if ok else 1)")
+    if run([env_python("x64"), "-c", check], check=False, env={"PYTHONPATH": str(CUDA_ADDON)}) != 0:
+        log("ERROR: PyTorch cannot use the NVIDIA GPU (the driver may be too old for CUDA 13.2; R580 or newer is "
+            "needed): task 5d will be skipped")
+        return False
+    (CUDA_ADDON / "setup-done.txt").write_text(lock_hash("requirements-cuda.txt"))
+    return True
 
 
 # ----------------------------------------------------------------------------------------------- data
@@ -377,17 +426,27 @@ def cmd_run(args):
     log(f"computer {computer_id()}, host {host_arch()}, {ncpu} logical CPUs; environments {envs}; "
         f"sections {sections}; threads {threads}; results {results}; log {logfile}", logfile)
 
-    def one(env, section, t):
+    def one(env, section, t, tasks=None, extra_env=None, label=""):
         time.sleep(args.cooldown)
         run([tools_python(), "scripts/loadmon.py", "wait", args.idle, args.idle_load], logfile, check=False)
-        log(f"{env} {section} threads={t}", logfile)
+        log(f"{env}{label} {section} threads={t}", logfile)
         cmd = [env_python(env), "-m", "bench.run", section, "--env", env, "--threads", t]
         if args.repeats is not None:
             cmd += ["--repeats", args.repeats]
-        if args.tasks:
-            cmd += ["--tasks", args.tasks]
-        if run(cmd, logfile, check=False, env=benv) != 0:
-            log(f"FAILED: {env} {section} threads={t} (see {logfile.name})", logfile)
+        if tasks or args.tasks:
+            cmd += ["--tasks", tasks or args.tasks]
+        if run(cmd, logfile, check=False, env={**benv, **(extra_env or {})}) != 0:
+            log(f"FAILED: {env}{label} {section} threads={t} (see {logfile.name})", logfile)
+
+    # Task 5d (TotalSegmentator on the NVIDIA GPU) runs in the x64 environment with CUDA PyTorch on PYTHONPATH, as a
+    # separate partial run after the x64 section 5 run; compare.py adds its result to section 5.
+    want_tasks = args.tasks.split(",") if args.tasks else None
+    run_cuda = ("ai" in sections and "x64" in envs and cuda_ready()
+                and (want_tasks is None or any("5d".startswith(t) or t.startswith("5d") for t in want_tasks)))
+    cuda_only = bool(want_tasks) and all(t.startswith("5d") for t in want_tasks)
+    if nvidia_gpus() and "ai" in sections and not cuda_ready():
+        log("NVIDIA GPU found, but CUDA PyTorch is not installed: task 5d is skipped (run 'benchmark.py setup')",
+            logfile)
 
     mon = LoadMonitor(results)
     try:
@@ -400,7 +459,10 @@ def cmd_run(args):
                 continue
             for t in ([ncpu] if section in ALL_THREADS_ONLY else threads):
                 for env in envs:
-                    one(env, section, t)
+                    if not (section == "ai" and cuda_only):
+                        one(env, section, t)
+                if section == "ai" and run_cuda:
+                    one("x64", "ai", t, tasks="5d", extra_env={"PYTHONPATH": str(CUDA_ADDON)}, label=" (CUDA)")
         if not args.no_rerun:
             # Repeat (once) runs that overlapped CPU load from other processes; AI runs take too long to repeat
             for env, section, t in overlapped_load(results):

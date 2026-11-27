@@ -59,7 +59,8 @@ The reports with charts are on the repository's GitHub Pages site.
    - ITK: anisotropic diffusion, label map, label statistics, histogram
    - VTK: flying edges, windowed sinc smoothing, normals, surface back to label map with a stencil
 4. **C++ visualization**: VTK surface rendering, GPU and CPU volume ray casting (offscreen, 1920x1080).
-5. **AI segmentation on CPU**: TotalSegmentator (fast and full resolution) and MONAIAuto3DSeg.
+5. **AI segmentation on CPU**: TotalSegmentator (fast and full resolution) and MONAIAuto3DSeg. On computers with
+   an NVIDIA GPU, also TotalSegmentator at full resolution on the GPU (CUDA).
 6. **ONNX Runtime and NPU**: the MONAIAuto3DSeg network exported to ONNX. The same sliding-window inference runs
    with:
    - PyTorch

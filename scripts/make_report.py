@@ -192,19 +192,37 @@ def later_note(row):
                      for v in later.values())
 
 
-def totalseg_full(groups):
-    """[(case, [(label, seconds)], note)]: TotalSegmentator full resolution with PyTorch (task 5b, each environment)
-    and with the networks on the NPU (task 6c), for the cases that ran on the NPU; note: when 6c was run later."""
+ACCEL_TASKS = {"5d_totalseg_full_cuda_": ("ai", "gpu"), "6c_totalseg_full_npu_qnn_fp16_": ("onnx", "npu")}
+
+
+def nvidia_gpu_name(summary):
+    """Name of the NVIDIA GPU in the computer description, e.g. 'NVIDIA GeForce RTX 3060', or None."""
+    gpus = ((summary.get("machine") or {}).get("system") or {}).get("gpus") or []
+    return next((g.get("name") for g in gpus if isinstance(g, dict) and "NVIDIA" in str(g.get("name", ""))), None)
+
+
+def totalseg_full(groups, gpu_name=None):
+    """[(case, [entry])]: TotalSegmentator full resolution with PyTorch on the CPU (task 5b, each environment), on
+    the NVIDIA GPU (task 5d) and on the NPU (task 6c), for the cases that ran on a GPU or NPU.
+    entry: {"label", "time", "kind" ("cpu", "gpu" or "npu"), "note" (when the task was added to the run later)}."""
     rows = {g["section"]: {r["task"]: r for r in g["rows"]} for g in groups if g["section"] in ("ai", "onnx")}
+    gpu = f"PyTorch CUDA, {gpu_name or 'NVIDIA GPU'}"
+    cases = {}
+    for prefix, (section, kind) in ACCEL_TASKS.items():
+        for task, row in rows.get(section, {}).items():
+            if task.startswith(prefix):
+                case = task.rsplit("_", 1)[1]
+                for e, t in row["times"].items():
+                    if t:
+                        label = f"{gpu}, {ENV_LABEL[e]}" if kind == "gpu" else f"{BACKEND['npu_qnn_fp16']}, {ENV_LABEL[e]}"
+                        cases.setdefault(case, []).append({"label": label, "time": t, "kind": kind,
+                                                           "note": later_note(row)})
     out = []
-    for task, row in rows.get("onnx", {}).items():
-        if not task.startswith("6c_totalseg_full_npu_qnn_fp16_"):
-            continue
-        case = task.rsplit("_", 1)[1]
-        torch_times = rows.get("ai", {}).get(f"5b_totalseg_full_{case}", {}).get("times", {})
-        cols = [(f"PyTorch, {ENV_LABEL[e]}", t) for e, t in torch_times.items() if t]
-        cols += [(f"{BACKEND['npu_qnn_fp16']}, {ENV_LABEL[e]}", t) for e, t in row["times"].items() if t]
-        out.append((case, cols, later_note(row)))
+    for case in sorted(cases):
+        cpu = rows.get("ai", {}).get(f"5b_totalseg_full_{case}", {}).get("times", {})
+        entries = [{"label": f"PyTorch CPU, {ENV_LABEL[e]}", "time": t, "kind": "cpu", "note": ""}
+                   for e, t in cpu.items() if t]
+        out.append((case, entries + cases[case]))
     return out
 
 
@@ -260,13 +278,15 @@ def auto_findings(summary, head, envs, others, emulated, extra, backends):
             parts = [f"{t / t0:.1f}× faster than {BACKEND[b]} on {ENV_LABEL[e]}" for t, b, e in totals[1:]]
             f.append(f"**Fastest AI inference** (MONAIAuto3DSeg network, sliding window, {len(backends[b0][e0])} "
                      f"cases): {BACKEND[b0]} on {ENV_LABEL[e0]}, {t0:.1f} s in total; " + ", ".join(parts) + ".")
-    for case, cols, note in totalseg_full(groups):
-        npu = [t for lbl, t in cols if "NPU" in lbl]
-        others_t = [(lbl, t) for lbl, t in cols if "NPU" not in lbl]
-        if npu and others_t:
-            f.append(f"**TotalSegmentator full resolution on the NPU** ({case}{'; ' + note if note else ''}): {npu[0] / 60:.1f} min; " +
-                     ", ".join(
-                f"{t / npu[0]:.1f}× faster than {lbl} ({t / 60:.1f} min)" for lbl, t in others_t) + ".")
+    for case, entries in totalseg_full(groups, nvidia_gpu_name(summary)):
+        cpu = [x for x in entries if x["kind"] == "cpu"]
+        for x in entries:
+            if x["kind"] != "cpu" and cpu:
+                where = "the NPU" if x["kind"] == "npu" else f"the NVIDIA GPU ({x['label'].split(', ')[1]})"
+                f.append(f"**TotalSegmentator full resolution on {where}** ({case}"
+                         f"{'; ' + x['note'] if x['note'] else ''}): {x['time'] / 60:.1f} min; " + ", ".join(
+                             f"{c['time'] / x['time']:.1f}× faster than PyTorch on the CPU, "
+                             f"{c['label'].split(', ', 1)[1]} ({c['time'] / 60:.1f} min)" for c in cpu) + ".")
     if extra:
         for e in envs:
             svd = {int(k): v for k, v in extra.get(e, {}).get("svd_2000_s", {}).items()}
@@ -430,23 +450,28 @@ def main():
         if "npu_qnn_fp16" in backends:
             md += ["The NPU runs the whole network (no CPU fallback) from a precompiled QNN context model.", ""]
 
-    ts_full = totalseg_full(groups)
+    ts_full = totalseg_full(groups, nvidia_gpu_name(summary))
     if ts_full:
-        md += ["## TotalSegmentator full resolution on the NPU", "",
-               "Task `total` at 1.5 mm, the same TotalSegmentator call as task 5b, with its 5 nnU-Net networks "
-               "evaluated on the NPU (task 6c, fp16, no CPU fallback). Preprocessing, resampling and the sliding "
-               "window run on the CPU as in 5b.", "",
-               "| Case | Configuration | Time | Speed-up of NPU |", "| --- | --- | ---: | ---: |"]
-        for case, cols, note in ts_full:
-            npu = next((t for lbl, t in cols if "NPU" in lbl), None)
-            for lbl, t in cols:
-                md.append(f"| {case} | {lbl}{f' ({note})' if note and 'NPU' in lbl else ''} | {t / 60:.1f} min | " +
-                          (f"{t / npu:.1f}× |" if npu else "– |"))
+        kinds = {x["kind"] for _, entries in ts_full for x in entries}
+        devices = [d for k, d in (("gpu", "NVIDIA GPU"), ("npu", "NPU")) if k in kinds]
+        md += [f"## TotalSegmentator full resolution on the {' and the '.join(devices)}", "",
+               "Task `total` at 1.5 mm, the same TotalSegmentator call as task 5b (PyTorch on the CPU). "
+               + ("Task 5d runs it with the CUDA build of PyTorch on the NVIDIA GPU. " if "gpu" in kinds else "")
+               + ("Task 6c evaluates its 5 nnU-Net networks on the NPU (fp16, no CPU fallback); preprocessing, "
+                  "resampling and the sliding window stay on the CPU. " if "npu" in kinds else ""), "",
+               "| Case | Configuration | Time | Speed-up vs PyTorch CPU, x64 |", "| --- | --- | ---: | ---: |"]
+        for case, entries in ts_full:
+            ref = next((x["time"] for x in entries if x["kind"] == "cpu" and x["label"].endswith(ENV_LABEL["x64"])),
+                       None)
+            for x in entries:
+                note = f" ({x['note']})" if x["note"] else ""
+                md.append(f"| {case} | {x['label']}{note} | {x['time'] / 60:.1f} min | " +
+                          (f"{ref / x['time']:.1f}× |" if ref else "– |"))
         md.append("")
-        notes = sorted({note for _, _, note in ts_full if note})
+        notes = sorted({x["note"] for _, entries in ts_full for x in entries if x["note"]})
         if notes:
-            md += ["The NPU task was added to this run later (" + "; ".join(notes) + "), in the same environments. "
-                   "The PyTorch times are from the original run.", ""]
+            md += ["Tasks marked with a date were added to this run later (" + "; ".join(notes) + "), in the same "
+                   "environments. The other times are from the original run.", ""]
 
     if extra:
         md += ["## Other checks", ""]
@@ -492,7 +517,8 @@ def main():
                "| --- |" + " ---: |" * (len(envs) + len(others))]
         for r in g["rows"]:
             sp = r.get("speedup", {})
-            md.append(f"| {r['task']} | " + " | ".join(fmt_s(r["times"].get(e)) for e in envs) + "".join(
+            note = f" ({later_note(r)})" if r.get("run_later") else ""
+            md.append(f"| {r['task']}{note} | " + " | ".join(fmt_s(r["times"].get(e)) for e in envs) + "".join(
                 f" | {sp[e]:.2f}×" if sp.get(e) else " | –" for e in others) + " |")
         md.append("")
 

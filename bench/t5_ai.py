@@ -3,6 +3,9 @@
 5a TotalSegmentator task "total", --fast (3 mm), multi-label output
 5b TotalSegmentator task "total", full resolution (1.5 mm), on the first TOTALSEG_FULLRES_CASES cases
 5c MONAIAuto3DSeg "Abdominal organs TS2 - quick" (3 mm), inference script of the Slicer extension
+5d TotalSegmentator as 5b, on an NVIDIA GPU (PyTorch CUDA). Only when CUDA is available: benchmark.py runs it in the
+   x64 environment with the CUDA build of PyTorch (requirements-cuda.txt) on PYTHONPATH, on computers with an NVIDIA
+   GPU. Output check: Dice against the CPU result of 5b in the same environment.
 
 Only run with all threads: TotalSegmentator always sets torch to use all cores on CPU.
 Segmentations are saved in data/work/<env>/seg/ and compared with the x64 results in compare.py.
@@ -45,11 +48,21 @@ def label_signature(path):
     return {"labels": labels, "foreground_voxels": int(counts[1:].sum())}
 
 
-def run_totalseg(case, out, fast, threads):
-    """TotalSegmentator task "total" on the CPU, multi-label output (also used by task 6c, with the NPU)."""
+def run_totalseg(case, out, fast, threads, device="cpu"):
+    """TotalSegmentator task "total", multi-label output; on the CPU, or "gpu" (CUDA). Also used by task 6c (NPU)."""
     from totalsegmentator.python_api import totalsegmentator
     totalsegmentator(config.NIFTI_DIR / f"{case}.nii.gz", out, ml=True, fast=fast, task="total",
-                     device="cpu", nr_thr_resamp=threads, nr_thr_saving=min(threads, 6), quiet=True)
+                     device=device, nr_thr_resamp=threads, nr_thr_saving=min(threads, 6), quiet=True)
+
+
+def cuda_info():
+    """GPU and CUDA versions if PyTorch can use an NVIDIA GPU, else None."""
+    import torch
+    if not torch.cuda.is_available():
+        return None
+    p = torch.cuda.get_device_properties(0)
+    return {"torch": torch.__version__, "cuda": torch.version.cuda, "cudnn": torch.backends.cudnn.version(),
+            "gpu": p.name, "gpu_memory_gb": round(p.total_memory / 2**30, 1), "gpu_count": torch.cuda.device_count()}
 
 
 def run(runner, cases=None, tasks=None, threads=1, env="unknown"):
@@ -90,4 +103,29 @@ def run(runner, cases=None, tasks=None, threads=1, env="unknown"):
                     return label_signature(out)
                 runner.run(f"5c_monai_{name}_{case}", fn, warmup=0)
 
-    return {"cases": cases}
+    extra = {"cases": cases}
+    if want("5d"):
+        info = cuda_info()
+        if info is None:
+            if tasks:  # asked for explicitly (benchmark.py does this on computers with an NVIDIA GPU)
+                print("5d skipped: PyTorch has no CUDA GPU here (CPU build of PyTorch, no NVIDIA GPU, or the "
+                      "driver is too old for this CUDA version)")
+        else:
+            import torch
+            from bench.totalseg_npu import seg_dice
+            info["dice_vs_cpu"] = {}
+            for case in cases[:config.TOTALSEG_FULLRES_CASES]:
+                out = seg_dir / f"{case}-totalseg-full-cuda.nii.gz"
+
+                def fn(case=case, out=out):
+                    run_totalseg(case, out, False, threads, device="gpu")
+                    torch.cuda.synchronize()
+                    return label_signature(out)
+                runner.run(f"5d_totalseg_full_cuda_{case}", fn, warmup=0)
+                ref = seg_dir / f"{case}-totalseg-full.nii.gz"
+                if ref.exists():
+                    info["dice_vs_cpu"][case] = seg_dice(ref, out)
+                print(f"  {case}: TotalSegmentator full resolution on {info['gpu']}: Dice vs CPU "
+                      f"{info['dice_vs_cpu'].get(case)}")
+            extra["cuda"] = info
+    return extra

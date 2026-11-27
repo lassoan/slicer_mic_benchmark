@@ -68,14 +68,16 @@ def latest_results():
 
 
 def run_later(envs, task):
-    """{env: {"date", "days_later"}} for environments where the task was added to the run by a later partial run."""
+    """{env: {"date", "days_later"}} for environments where the task was added to the run by a partial run on a later
+    day (not one in the same benchmark run, such as task 5d)."""
     out = {}
     for e, v in envs.items():
         added = v and v[1].get("added_tasks", {}).get(task)
         if added and added.get("timestamp") and v[1].get("timestamp"):
             import datetime
             a, b = (datetime.date.fromisoformat(x[:10]) for x in (added["timestamp"], v[1]["timestamp"]))
-            out[e] = {"date": str(a), "days_later": (a - b).days}
+            if (a - b).days >= 1:
+                out[e] = {"date": str(a), "days_later": (a - b).days}
     return out
 
 
