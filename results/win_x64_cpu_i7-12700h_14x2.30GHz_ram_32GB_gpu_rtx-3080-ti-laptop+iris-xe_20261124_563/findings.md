@@ -49,11 +49,17 @@ Total time per section (sum of the task medians, in seconds):
   - Sliding-window inference, per case: PyTorch 12.1–28.8 s, ONNX Runtime 17.4–39.2 s. ONNX Runtime is
     1.33–1.45× slower.
   - One patch, 20 threads: PyTorch 2.924 s, ONNX Runtime 4.040 s. With 1 thread: 10.3 s and 11.5 s.
-  - The GPU was not used for AI. All AI tasks run on the CPU.
+  - Sections 5 and 6 run on the CPU. Only task 5d uses the GPU (see below).
 - **TotalSegmentator on the CPU:**
   - fast mode: 17.7–36.9 s per case
   - full resolution, case01: 340.9 s (5.7 minutes)
   - MONAIAuto3DSeg abdominal organs: 6.234–24.1 s per case
+- **TotalSegmentator full resolution on the RTX 3080 Ti is 3.8× faster than on the CPU** (task 5d, run later, on
+  2026-11-27).
+  - case01: 90.0 s on the GPU, against 340.9 s on the CPU (5b).
+  - This is one cold run. It includes loading the models and starting CUDA.
+  - The output matches the CPU: mean Dice 0.9999 over 52 labels, lowest 0.9977.
+  - PyTorch 2.15.0+cu132, CUDA 13.2, cuDNN 9.26, 16 GB GPU memory.
 
 ## Caveats
 
@@ -63,6 +69,8 @@ Total time per section (sum of the task medians, in seconds):
   - The driver repeated the 20-thread file I/O run because of outside load. The repeat also overlapped load:
     6.8% of the machine on average and 27.6% at most. Treat the section 1 times as slightly pessimistic.
   - In every other section, outside load was 1.4–3.0% on average and 12.1% at most.
+  - During task 5d (2026-11-27), outside load was 10.2% on average and 16.5% at most. AI runs are not repeated.
+    The effect is probably small, because the task runs on the GPU.
 - **Hybrid CPU.** "20 threads" mixes performance cores, efficiency cores and hyper-threads. So the scaling is not
   comparable with a CPU that has only one kind of core.
 - **Computer id fixed after the run.** The system scan listed USB input devices as NPUs, because the WMI filter

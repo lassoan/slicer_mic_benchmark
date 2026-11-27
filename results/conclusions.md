@@ -34,6 +34,20 @@ Measured on the Snapdragon X Elite.
   - Snapdragon, x64 under emulation: ONNX Runtime is also slower than PyTorch.
 - **On native arm64, it is the other way round:** ONNX Runtime is 7–8× faster than PyTorch.
 
+## AI segmentation on a GPU or NPU
+
+- **An accelerator makes TotalSegmentator at full resolution practical.** On case01, one cold run each:
+
+  | Computer and device | Time |
+  | --- | ---: |
+  | Core i7-12700H, NVIDIA RTX 3080 Ti Laptop GPU (CUDA) | 90.0 s |
+  | Snapdragon X Elite, Hexagon NPU | 126.4 s |
+  | Core i7-12700H, CPU | 340.9 s |
+  | Snapdragon X Elite, x64 under emulation, CPU | 468.2 s |
+
+  - The RTX 3080 Ti is 3.8× faster than the CPU of the same laptop. Its output matches the CPU: mean Dice 0.9999.
+  - The GPU needs no preparation. The NPU needs a one-time compile of about 3 hours.
+
 ## Threads
 
 - **The C++ libraries (ITK, VTK) use the threads well.** Section 3 is 4.3× faster with 20 threads than with 1

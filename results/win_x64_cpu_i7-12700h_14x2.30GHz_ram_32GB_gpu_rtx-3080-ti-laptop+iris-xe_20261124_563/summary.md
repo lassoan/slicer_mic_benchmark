@@ -177,6 +177,7 @@ CPU load from other processes during the run (% of machine, mean / max): x64 2.5
 | 5c_monai_abdominal-organs-3mm-v2.0.0_case03 | 17.2 |
 | 5c_monai_abdominal-organs-3mm-v2.0.0_case11 | 15.6 |
 | 5c_monai_abdominal-organs-3mm-v2.0.0_case13 | 6.234 |
+| 5d_totalseg_full_cuda_case01 (run later: x64, 2026-11-27) | 90.0 |
 
 CPU load from other processes during the run (% of machine, mean / max): x64 3.0 / 7.9
 
